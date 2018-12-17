@@ -1,0 +1,67 @@
+{
+    "url": "https://github.com/", 
+    "commands": [
+        {
+            "args": [
+                "afh-random-user", 
+                "Pick a username"
+            ], 
+            "type": "type"
+        }, 
+        {
+            "args": [
+                "afh_random_user@afh.com", 
+                "you@example.com"
+            ], 
+            "type": "type"
+        }, 
+        {
+            "args": [
+                "afh_random_password", 
+                "Create a password"
+            ], 
+            "type": "type"
+        }, 
+        {
+            "args": [
+                "karate", 
+                "Search GitHub"
+            ], 
+            "type": "type"
+        }, 
+        {
+            "args": [
+                "karate"
+            ], 
+            "type": "click"
+        }, 
+        {
+            "args": [
+                "karate"
+            ], 
+            "type": "click"
+        }, 
+        {
+            "args": [
+                "Issues"
+            ], 
+            "type": "click"
+        }, 
+        {
+            "args": [
+                "Labels"
+            ], 
+            "type": "click"
+        }, 
+        {
+            "args": [
+                "bug"
+            ], 
+            "type": "click"
+        }, 
+        {
+            "type": "wait", 
+            "time": 10
+        }
+    ]
+}

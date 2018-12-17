@@ -1,0 +1,86 @@
+{
+    "url": "https://github.com/", 
+    "commands": [
+        {
+            "attribute": "placeholder", 
+            "args": [
+                "afh-random-user", 
+                "Pick a username"
+            ], 
+            "type": "type", 
+            "mode": "PLACEHOLDER"
+        }, 
+        {
+            "attribute": "placeholder", 
+            "args": [
+                "afh_random_user@afh.com", 
+                "you@example.com"
+            ], 
+            "type": "type", 
+            "mode": "PLACEHOLDER"
+        }, 
+        {
+            "attribute": "placeholder", 
+            "args": [
+                "afh_random_password", 
+                "Create a password"
+            ], 
+            "type": "type", 
+            "mode": "PLACEHOLDER"
+        }, 
+        {
+            "attribute": "placeholder", 
+            "args": [
+                "karate", 
+                "Search GitHub"
+            ], 
+            "type": "type", 
+            "mode": "PLACEHOLDER"
+        }, 
+        {
+            "attribute": "placeholder", 
+            "args": [
+                "karate"
+            ], 
+            "type": "click", 
+            "mode": "XPATH"
+        }, 
+        {
+            "attribute": "placeholder", 
+            "args": [
+                "karate"
+            ], 
+            "type": "click", 
+            "mode": "XPATH"
+        }, 
+        {
+            "attribute": "placeholder", 
+            "args": [
+                "Issues"
+            ], 
+            "type": "click", 
+            "mode": "XPATH"
+        }, 
+        {
+            "attribute": "placeholder", 
+            "args": [
+                "Labels"
+            ], 
+            "type": "click", 
+            "mode": "XPATH"
+        }, 
+        {
+            "attribute": "placeholder", 
+            "args": [
+                "bug"
+            ], 
+            "type": "click", 
+            "mode": "XPATH"
+        }, 
+        {
+            "type": "wait", 
+            "mode": "", 
+            "time": 10
+        }
+    ]
+}

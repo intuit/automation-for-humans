@@ -1,0 +1,10 @@
+{
+    "name": "public-sites",
+    "executables": [
+        {
+            "name": "github",
+            "type": "file",
+            "location": "sample-inputs/public-sites/github-nav-demo.txt"
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+{
+    "runnables": [
+        "suites/public-sites.json"
+    ]
+}

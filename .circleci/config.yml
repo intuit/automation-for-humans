@@ -1,0 +1,26 @@
+# trigger build
+version: 2
+debug: true
+jobs:
+  build:
+    docker:
+      - image: circleci/node:9.11.2-browsers
+    steps:
+      - checkout
+      - run:
+          name: "Installing Dependencies"
+          command: "bash src/install-dependencies.sh"
+      - run:
+          name: "Build"
+          command: "python3 src/automate.py"
+      - run:
+          name: "Create Animations"
+          command: "bash src/create-animation.sh"
+          when: always
+      - store_artifacts:
+          path: ./recordings
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build

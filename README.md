@@ -27,6 +27,7 @@ Write the test cases to execute inside.
         }
     ]
 }
+
 ```
 - Add the suite to the [run.json](./suites/run.json)
 ```json

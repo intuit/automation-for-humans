@@ -4,18 +4,15 @@ debug: true
 jobs:
   build:
     docker:
-      - image: circleci/node:9.11.2-browsers
+      - image: rohithr31/automation-for-humans
     steps:
       - checkout
-      - run:
-          name: "Installing Dependencies"
-          command: "bash src/install-dependencies.sh"
       - run:
           name: "Build"
           command: "python3 src/automate.py"
       - run:
           name: "Create Animations"
-          command: "bash src/create-animation.sh"
+          command: "chmod +x src/create-animation.sh && ./src/create-animation.sh"
           when: always
       - store_artifacts:
           path: ./recordings

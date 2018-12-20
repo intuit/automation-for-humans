@@ -1,0 +1,11 @@
+{
+    "name": "mac-osx-apps",
+    "platform": "mac",
+    "executables": [
+        {
+            "name": "calculator",
+            "type": "file",
+            "location": "sample-inputs/mac-osx-apps/calculator.txt"
+        }
+    ]
+}

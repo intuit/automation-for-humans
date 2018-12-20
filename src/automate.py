@@ -1,148 +1,72 @@
 # This is the main file which controls the logic for the UI automation.
-from parse import *
+import parse
 import parse_english
-import slackbot
+import common
+from constants import *
+
+# Platforms
+import web
+import mac
 
 import os
-import time
+import json
 from multiprocessing import Process
+import slackbot
 
-# All selenium imports
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
+platform = None
 
-# These are the different mode in which we find an element on the screen.
-# The order given here is the same order in which we search.
-execute_modes = ["NAME", "PLACEHOLDER", "XPATH", "VALUE", "ATTRIBUTE"]
-
-def find_element(driver, timeout_seconds, mode, xpath) :
-    if mode == "NAME" :
-        return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.NAME, xpath)))
+def set_platform(plat) :
+    global platform
+    if plat == "web" :
+        platform = web
+    elif plat == "mac" :
+        platform = mac
     else :
-        return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.XPATH, xpath)))
-
-def generate_xpath_text(command) :
-    index = "1"
-    if "index" in command :
-        index = command["index"]
-    return "(//*[text()='{text}'])[position() = {index}]".format(text=command["args"][-1], index=index)
-
-def generate_xpath_for_generic_attribute(command) :
-    index = "1"
-    if "index" in command :
-        index = command["index"]
-    return "(//*[@{attribute}='{text}'])[position() = {index}]".format(text=command["args"][-1], index=index, attribute=command["attribute"])
-
-def generate_xpath_placeholder(command) :
-    command["attribute"] = "placeholder"
-    return generate_xpath_for_generic_attribute(command)
-
-def generate_xpath_name(command) :
-    return command["args"][-1].replace(" ", "")
-
-def generate_xpath_value(command) :
-    command["attribute"] = "value"
-    return generate_xpath_for_generic_attribute(command)
+        raise Exception("Unsupported platform")
 
 def execute_command(driver, command) :
     element = ""
-    timeout_seconds = 2
     mode = ""
 
-    print (command)
+    if common.execute_non_element_action(driver, command) :
+        return "" # We dont need to return mode here.
 
-    # Here are all the dumb commands.
-    if command["type"] == "wait" :
-        print ("sleeping")
-        time.sleep(int(command["time"]))
-        return ""
-    elif command["type"] == "execjs" :
-        driver.execute_script(command["js"])
-        return ""
+    element, mode, xpath = platform.find_element(driver, command)
 
-    # If we already have a mode, that means that its comign form the json.lock
-    # Else we initialise it with mode 0 and iterate
-    if "mode" in command :
-        timeout_seconds = 15
-        mode_index = execute_modes.index(command["mode"])
-    elif "attribute" in command :
-        mode_index = execute_modes.index("ATTRIBUTE")
-    else :
-        timeout_seconds = 5
-        mode_index = 0
-    time.sleep(1)
-    while mode_index < len(execute_modes) :
-        mode = execute_modes[mode_index]
-        try :
-            if mode == "NAME" :
-                xpath = generate_xpath_name(command)
-                element = find_element(driver, timeout_seconds, mode, xpath)
-                break
-            elif mode == "PLACEHOLDER" :
-                xpath = generate_xpath_placeholder(command)
-                element = find_element(driver, timeout_seconds, mode, xpath)
-                break
-            elif mode == "XPATH" :
-                xpath = generate_xpath_text(command)
-                element = find_element(driver, timeout_seconds, mode, xpath)
-                break
-            elif mode == "VALUE" :
-                xpath = generate_xpath_value(command)
-                element = find_element(driver, timeout_seconds, mode, xpath)
-                break
-            elif mode == "ATTRIBUTE" :
-                xpath = generate_xpath_for_generic_attribute(command)
-                print (xpath)
-                element = find_element(driver, timeout_seconds, mode, xpath)
-                break
-            else :
-                raise Exception("Invalid mode  found while parsing command", command)
-        except :
-            print ("Element not while searching in mode : ", mode)
-            mode_index += 1
-            continue
+    common.execute_action(driver, command, element)
 
-    if mode_index == len(execute_modes) :
-        raise Exception("Element not found")
-
-    if command["type"] == "click" :
-        ActionChains(driver).move_to_element(element).click().perform()
-    elif command["type"] == "hover" :
-        ActionChains(driver).move_to_element(element).perform()
-    elif command["type"] == "type" :
-        element.send_keys(command["args"][0])
-    else :
-        raise Exception("Command Type Not Found : ", command["type"])
+    # We are returning mode to save it into the lock file.
     return mode
 
 def run_executable(executable, arguments) :
+    # There might be different places from where we m ight consume the instructions to execute.
     if executable["type"] == "file" :
         input_file = executable["location"]
         output_file = input_file.replace(".txt", ".json")
     else :
-        raise Exception("Unsupported type")
+        raise Exception("Unsupported executable type")
 
+    # We parse the english statements into our custom JSON format.
+    # input_file : File with english statements.
+    # output_file : File with JSON format.
     parse_english.parse_english_to_json(input_file, output_file)
+
     input_file = output_file
+
+    # If .lock file is present, then we directly read from it.
     if os.path.isfile(input_file + ".lock") :
         input_file = input_file + ".lock"
-    program = parse_input(input_file)
+
+    # Parse the JSON file.
+    program = parse.parse_input(input_file)
+
     locked_program = program
+
     command_number = 0
+
     if "url" in program :
-        options = webdriver.ChromeOptions()
-        options.add_argument("--start-maximized")
-        options.add_argument('--headless')
-        options.add_argument('--no-sandbox')
-        options.add_argument('--disable-dev-shm-usage')
-        driver = webdriver.Chrome(chrome_options=options)
-        driver.set_window_size(1920, 1080)
-        print ("URL is : " + program["url"].format(**arguments))
-        driver.get(program["url"].format(**arguments))
+        driver = platform.init_driver()
+        platform.init_app(driver, program, arguments)
 
         # Initialising the stuff required for recordings
         screenshot_folder = recording_init(executable["name"])
@@ -150,22 +74,26 @@ def run_executable(executable, arguments) :
         # Now its time to execute the automation.
         for command in program["commands"] :
 
+            print("[LOG] Executing Command : ", command)
             # Before executing every command take a screenshot
             screenshot_file_name = screenshot_folder + "/" + format(command_number, '05d') + ".png"
             driver.save_screenshot(screenshot_file_name)
 
             mode = execute_command(driver, command)
+
             locked_program["commands"][command_number]["mode"] = mode
             command_number += 1
         driver.close()
     else :
         raise Exception("Program Error! Url not specified!")
+
+    # If we had not read the commands from a lock file, we will generate one now.
     if ".lock" not in input_file :
         with open(input_file + ".lock","w") as lock_file :
             json.dump(locked_program, lock_file, indent=4)
 
 def get_suites() :
-    path_to_run_json = "suites/run.json"
+    path_to_run_json = RUN_JSON
     with open(path_to_run_json, "r") as suites_file :
         suites = json.load(suites_file)
         return suites
@@ -176,7 +104,7 @@ def get_executables(runnable) :
         return executables
 
 def recording_init(suite_name) :
-    recordings_dir_name = "recordings"
+    recordings_dir_name = RECORDINGS_DIR
     if not os.path.isdir(recordings_dir_name) :
         os.mkdir(recordings_dir_name)
 
@@ -188,7 +116,7 @@ def recording_init(suite_name) :
     return suite_path
 
 def get_arguments() :
-    arguments_file_path = "arguments.txt"
+    arguments_file_path = ARGUMENTS_FILE
     return_dict = {}
     if os.path.isfile(arguments_file_path) :
         with open(arguments_file_path, "r") as args_file :
@@ -198,25 +126,57 @@ def get_arguments() :
             return return_dict
     return return_dict
 
-if __name__ == "__main__" :
-    suites = get_suites()
-    print (suites)
-    runnables = suites["runnables"]
-    print (runnables)
-    arguments = get_arguments()
+def run_parallel(runnables, arguments) :
     jobs = []
     results = []
     for runnable in runnables :
         executables = get_executables(runnable)
+        set_platform(executables["platform"])
         for executable in executables["executables"] :
+            print("[LOG] Executing Executable : ", executable)
             p = Process(target=run_executable, args=(executable, arguments))
             jobs.append((p, executable, runnable))
             p.start()
     for proc, executable, runnable in jobs :
         proc.join()
         results.append((executables, executable, proc.exitcode))
-    exit_status = True
+    return results
+
+def run_serial(runnables, arguments) :
+    jobs = []
+    results = []
+    for runnable in runnables :
+        executables = get_executables(runnable)
+        set_platform(executables["platform"])
+        for executable in executables["executables"] :
+            try :
+                run_executable(executable, arguments)
+                results.append((executables, executable, 0))
+            except Exception as e :
+                print("[Error] Got Exception in : ", executable)
+                print("[Exception is] ", e)
+                results.append((executables, executable, 1))
+    return results
+
+if __name__ == "__main__" :
+    # Get the suites to execute.
+    suites = get_suites()
+    runnables = suites["runnables"]
+
+    # Get the arguments from the file.
+    arguments = get_arguments()
+
+    results = []
+
+    if suites["execution-mode"] == "parallel" :
+        results = run_parallel(runnables, arguments)
+    else :
+        results = run_serial(runnables, arguments)
+
+    # If there is a slack channel mentioned in the suite we post the results to slack.
     slackbot.post_results_to_slack(results)
+
+    exit_status = True
     for runnable, executable, result in results :
         if result != 0 :
             print ("Error in : ", executable["name"])
@@ -225,4 +185,5 @@ if __name__ == "__main__" :
         print ("Exiting with error!")
         exit(1)
     else :
-        print ("All good!")
+        print ("Success!")
+        exit(0)

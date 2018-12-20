@@ -4,9 +4,10 @@ import json
 # This is language of the english statements that can be written.
 patterns = [
     # Regex for click actions.
-    # click on "Select" -> ('click', None, None, None, 'Select')
-    # click on 2nd "Remove" -> ('click', '2nd ', '2', 'nd', 'Remove')
     "(click)\s*on\s+((\d*)(st|nd|rd|th)\s+)?\"([^\"]+)\"(\s+\"(.+)\")?",
+
+    # Regex for click if present.
+    "(click if present)\s*on\s+((\d*)(st|nd|rd|th)\s+)?\"([^\"]+)\"(\s+\"(.+)\")?",
 
     # Regex for hover actions.
     "(hover)\s*on\s+((\d*)(st|nd|rd|th)\s+)?\"([^\"]+)\"(\s+\"(.+)\")?",
@@ -20,10 +21,13 @@ patterns = [
     # Regex for wait.
     "(wait)\s*for\s*\"(.+)\"",
 
+    # Regex for wait until.
+    "(wait until)\s*\"(.+)\"",
+
     # Regex for execjs.
     "(execjs)\s+\"(.+)\"",
 
-    # Regex for assert actions.
+    # Regex for assert actions. Coming Soon!
     # "(assert)\s*\"(.+)\"\s*in\s*\"([^\"]+)\"(\s+\"(.+)\"){1}",
 ]
 
@@ -48,6 +52,10 @@ URL_WHERE_INDEX = 1
 # These are the indices of the wait groups
 WAIT_TIME_INDEX = 1
 
+# These are the indices of the wait until groups
+WAITUNTIL_ELEMENT_INDEX = 1
+
+# These are the indices of the execjs groups
 EXECJS_WHAT_INDEX = 1
 
 def parse_english_to_json(input_file, output_file) :
@@ -55,6 +63,8 @@ def parse_english_to_json(input_file, output_file) :
         program = {}
         commands = []
         for line in english_text :
+            if line[0] == "#" :
+                continue
             did_match = False
             for pattern in patterns :
                 p = re.compile(pattern)
@@ -62,10 +72,9 @@ def parse_english_to_json(input_file, output_file) :
                 if matches != None :
                     did_match = True
                     groups = matches.groups()
-                    print (groups)
                     command_value = {}
                     # Find out the type of the command
-                    if groups[TYPE_INDEX] == "click" or groups[TYPE_INDEX] == "hover" :
+                    if groups[TYPE_INDEX] == "click" or groups[TYPE_INDEX] == "hover" or groups[TYPE_INDEX] == "click if present":
                         command_value["type"] = groups[TYPE_INDEX]
                         command_value["args"] = [groups[CLICK_ARGS_INDEX]]
                         if groups[CLICK_INDEX_INDEX] != None :
@@ -85,11 +94,15 @@ def parse_english_to_json(input_file, output_file) :
                     elif groups[TYPE_INDEX] == "url" :
                         program["url"] = groups[URL_WHERE_INDEX]
                     elif groups[TYPE_INDEX] == "wait" :
-                        command_value["type"] = "wait"
+                        command_value["type"] = groups[TYPE_INDEX]
                         command_value["time"] = int(groups[WAIT_TIME_INDEX])
                         commands.append(command_value)
+                    elif groups[TYPE_INDEX] == "wait until" :
+                        command_value["type"] = groups[TYPE_INDEX]
+                        command_value["args"] = [groups[WAITUNTIL_ELEMENT_INDEX]]
+                        commands.append(command_value)
                     elif groups[TYPE_INDEX] == "execjs" :
-                        command_value["type"] = "execjs"
+                        command_value["type"] = groups[TYPE_INDEX]
                         command_value["js"] = groups[EXECJS_WHAT_INDEX]
                         commands.append(command_value)
                     else :

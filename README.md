@@ -39,7 +39,7 @@ Write the test cases to execute inside.
 ```
 - Run the code from the root directory :
 ```bash
-python src/automate.py
+python3 src/automate.py
 ```
 - After the code is executed, one can see the screenshots and the gif in the `recordings/` folder created.
 

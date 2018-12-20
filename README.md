@@ -51,45 +51,45 @@ python src/automate.py
         <th>Example</th>
     </tr>
     <tr>
-        <td><a href="#"><code>url</code></a></td>
+        <td><a href=""><code>url</code></a></td>
         <td>Used to open a url</td>
         <td>
-            <a href="#"><code>url "https://github.com/"</code>
+            <a href=""><code>url "https://github.com/"</code>
         </td>
     </tr>
     <tr>
-        <td><a href="#"><code>click</code></a></td>
+        <td><a href=""><code>click</code></a></td>
         <td>Used to click on an element</td>
         <td>
-            <a href="#"><code>click on "Issues"</code>
+            <a href=""><code>click on "Issues"</code>
         </td>
     </tr>
     <tr>
-        <td><a href="#"><code>type</code></a></td>
+        <td><a href=""><code>type</code></a></td>
         <td>Used to type a string in some element</td>
         <td>
-            <a href="#"><code>type "afh-random-user" in "Pick a username"</code>
+            <a href=""><code>type "afh-random-user" in "Pick a username"</code>
         </td>
     </tr>
     <tr>
-        <td><a href="#"><code>wait</code></a></td>
+        <td><a href=""><code>wait</code></a></td>
         <td>Wait's for a particular amount of time in seconds</td>
         <td>
-            <a href="#"><code>wait for "10"</code>
+            <a href=""><code>wait for "10"</code>
         </td>
     </tr>
     <tr>
-        <td><a href="#"><code>hover</code></a></td>
+        <td><a href=""><code>hover</code></a></td>
         <td>Used to hover over an element</td>
         <td>
-            <a href="#"><code>hover on "Fragments"</code>
+            <a href=""><code>hover on "Fragments"</code>
         </td>
     </tr>
     <tr>
-        <td><a href="#"><code>execjs</code></a></td>
+        <td><a href=""><code>execjs</code></a></td>
         <td>Used to execute javascript inside the browser context</td>
         <td>
-            <a href="#"><code>execjs "localStorage.setItem('random-key', 'false');"</code>
+            <a href=""><code>execjs "localStorage.setItem('random-key', 'false');"</code>
         </td>
     </tr>
 </table>
@@ -97,7 +97,7 @@ python src/automate.py
 That's all! We currently support only a minimum set of keywords and intend to keep to it that way. There are some advanced-searching that you can do with the same keywords, explained in <a href="#advanced-keywords-use">advanced-keywords-use</a>.
 
 ### Core Philosophy
-The core philosophy of [automation-for-humans] is that the automation tests should mimic the user's behavior. Then we ask ourselves the question, what all things can a user do while they are interacting with the UI that we have built. The most common actions that a user does is <a href="#"><code>click</code></a>, <a href="#"><code>type</code></a>, <a href="#"><code>hover</code></a>. More complex actions include <a href="#"><code>drag-and-drop</code></a>, <a href="#"><code>click-and-drag</code></a> etc. Supporting the complex actions would involve and non-trival pixel math which [automation-for-humans] does not plan to support in the initial phase.
+The core philosophy of [automation-for-humans] is that the automation tests should mimic the user's behavior. Then we ask ourselves the question, what all things can a user do while they are interacting with the UI that we have built. The most common actions that a user does is <a href=""><code>click</code></a>, <a href=""><code>type</code></a>, <a href=""><code>hover</code></a>. More complex actions include <a href=""><code>drag-and-drop</code></a>, <a href=""><code>click-and-drag</code></a> etc. Supporting the complex actions would involve and non-trival pixel math which [automation-for-humans] does not plan to support in the initial phase.
 
 Another aspect core to [automation-for-humans] is that it does not store [XPath]'s and use it as an identifier while running the tests. Instead [automation-for-humans] stores only the text, which is how the user sees and interacts with the page.
 
@@ -175,8 +175,8 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
             />
         </td>
         <td>
-            <a href="./.cricleci/config.yml">
-                .cricleci/config.yml
+            <a href="./.circleci/config.yml">
+                .circleci/config.yml
             </a>
         </td>
     </tr>
@@ -189,7 +189,7 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
             />
         </td>
         <td>
-            <a href="#">
+            <a href="">
                 Coming Soon!
             </a>
         </td>
@@ -206,17 +206,17 @@ Sometimes one has no choice but to use the `id`'s, `class`, `automation-id` attr
         <th>Example</th>
     </tr>
     <tr>
-        <td><a href="#"><code>click</code></a></td>
+        <td><a href=""><code>click</code></a></td>
         <td>Used to click on an element with id "issues-id"</td>
         <td>
-            <a href="#"><code>click on "issues-id" "id"</code>
+            <a href=""><code>click on "issues-id" "id"</code>
         </td>
     </tr>
     <tr>
-        <td><a href="#"><code>type</code></a></td>
+        <td><a href=""><code>type</code></a></td>
         <td>Used to type a string in some element with class name "#user-name"</td>
         <td>
-            <a href="#"><code>type "afh-random-user" in "#user-name" "class"</code>
+            <a href=""><code>type "afh-random-user" in "#user-name" "class"</code>
         </td>
     </tr>
 </table>
@@ -233,17 +233,17 @@ If multiple elements exists on the page that look alike(text-wise) then there is
         <th>Example</th>
     </tr>
     <tr>
-        <td><a href="#"><code>click</code></a></td>
+        <td><a href=""><code>click</code></a></td>
         <td>Used to click on the 2nd issue</td>
         <td>
-            <a href="#"><code>click on 2nd "issue"</code>
+            <a href=""><code>click on 2nd "issue"</code>
         </td>
     </tr>
     <tr>
-        <td><a href="#"><code>type</code></a></td>
+        <td><a href=""><code>type</code></a></td>
         <td>Used to type a string in the 4th text box named "enter text here"</td>
         <td>
-            <a href="#"><code>type "afh-random-user" in 4th "enter text here"</code>
+            <a href=""><code>type "afh-random-user" in 4th "enter text here"</code>
         </td>
     </tr>
 </table>

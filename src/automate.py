@@ -31,6 +31,9 @@ def execute_command(driver, command) :
     if common.execute_non_element_action(driver, command) :
         return "" # We dont need to return mode here.
 
+    # We need to add sleep here because, some UI elements take time to refresh.
+    time.sleep(1)
+
     element, mode, xpath = platform.find_element(driver, command)
 
     common.execute_action(driver, command, element)

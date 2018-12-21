@@ -19,6 +19,7 @@ Write the test cases to execute inside.
 ```json
 {
     "name": "public-sites",
+    "platform": "web",
     "executables": [
         {
             "name": "github",
@@ -27,11 +28,11 @@ Write the test cases to execute inside.
         }
     ]
 }
-
 ```
 - Add the suite to the [run.json](./suites/run.json)
 ```json
 {
+    "execution-mode": "parallel",
     "runnables": [
         "suites/public-sites.json"
     ]

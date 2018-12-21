@@ -1,4 +1,4 @@
-url "https://github.com/"
+open "https://github.com/"
 type "afh-random-user" in "Pick a username"
 type "afh_random_user@afh.com" in "you@example.com"
 type "afh_random_password" in "Create a password"

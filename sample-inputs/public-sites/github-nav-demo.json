@@ -1,5 +1,4 @@
 {
-    "url": "https://github.com/", 
     "commands": [
         {
             "args": [
@@ -63,5 +62,6 @@
             "type": "wait", 
             "time": 10
         }
-    ]
+    ], 
+    "open": "https://github.com/"
 }

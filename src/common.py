@@ -22,7 +22,7 @@ def execute_action(driver, command, element) :
         try :
             ActionChains(driver).move_to_element(element).click().perform()
         except :
-            print("[LOG][Not Found] click if present : ", element)
+            print("[LOG][Not Found Element] click if present : ", element)
     elif command["type"] == "hover" :
         ActionChains(driver).move_to_element(element).perform()
     elif command["type"] == "type" :

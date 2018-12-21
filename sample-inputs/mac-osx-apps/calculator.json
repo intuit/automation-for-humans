@@ -1,29 +1,29 @@
 {
-    "url": "calculator",
     "commands": [
         {
-            "type": "click",
             "args": [
                 "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:92']"
-            ]
-        },
+            ], 
+            "type": "click"
+        }, 
         {
-            "type": "click",
             "args": [
                 "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:466']"
-            ]
-        },
+            ], 
+            "type": "click"
+        }, 
         {
-            "type": "click",
             "args": [
                 "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:112']"
-            ]
-        },
+            ], 
+            "type": "click"
+        }, 
         {
-            "type": "click",
             "args": [
                 "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:447']"
-            ]
+            ], 
+            "type": "click"
         }
-    ]
+    ], 
+    "open": "calculator"
 }

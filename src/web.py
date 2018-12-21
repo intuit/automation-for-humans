@@ -107,4 +107,4 @@ def init_driver() :
     return driver
 
 def init_app(driver, program, arguments) :
-    driver.get(program["url"].format(**arguments))
+    driver.get(program["open"].format(**arguments))

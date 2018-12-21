@@ -1,4 +1,4 @@
-url "calculator"
+open "calculator"
 click on "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:92']"
 click on "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:466']"
 click on "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:112']"

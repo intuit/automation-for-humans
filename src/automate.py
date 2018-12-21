@@ -64,7 +64,7 @@ def run_executable(executable, arguments) :
 
     command_number = 0
 
-    if "url" in program :
+    if "open" in program :
         driver = platform.init_driver()
         platform.init_app(driver, program, arguments)
 
@@ -85,7 +85,7 @@ def run_executable(executable, arguments) :
             command_number += 1
         driver.close()
     else :
-        raise Exception("Program Error! Url not specified!")
+        raise Exception("Program Error! Open not specified!")
 
     # If we had not read the commands from a lock file, we will generate one now.
     if ".lock" not in input_file :
@@ -133,7 +133,7 @@ def run_parallel(runnables, arguments) :
         executables = get_executables(runnable)
         set_platform(executables["platform"])
         for executable in executables["executables"] :
-            print("[LOG] Executing Executable : ", executable)
+            print("[LOG] Running Executable : ", executable)
             p = Process(target=run_executable, args=(executable, arguments))
             jobs.append((p, executable, runnable))
             p.start()

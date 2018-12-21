@@ -1,5 +1,4 @@
 {
-    "url": "https://github.com/", 
     "commands": [
         {
             "attribute": "placeholder", 
@@ -82,5 +81,6 @@
             "mode": "", 
             "time": 10
         }
-    ]
+    ], 
+    "open": "https://github.com/"
 }

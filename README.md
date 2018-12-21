@@ -51,10 +51,10 @@ python3 src/automate.py
         <th>Example</th>
     </tr>
     <tr>
-        <td><a href="#english-keywords"><code>url</code></a></td>
-        <td>Used to open a url</td>
+        <td><a href="#english-keywords"><code>open</code></a></td>
+        <td>Used to open a url/application</td>
         <td>
-            <a href="#english-keywords"><code>url "https://github.com/"</code>
+            <a href="#english-keywords"><code>open "https://github.com/"</code>
         </td>
     </tr>
     <tr>

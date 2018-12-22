@@ -288,6 +288,9 @@ To records, first start [Appium For Mac]. Then in the terminal execute :
 ```bash
 python3 src/action-recorder-mac.py <app-name> <output-file-path>
 ```
+
+Press `Ctrl + C` to terminalte the script from recording.
+
 This will produce a file with all the commands that you have executed in a way that [automation-for-humans] understands. For readability,
 the script also add in a comment before each line (starting with `#`) which attempts to be the english version of the same command.
 

@@ -271,10 +271,10 @@ New Keywords added :
         <th>Example</th>
     </tr>
     <tr>
-        <td><a href="#"><code>wait until</code></a></td>
+        <td><a href="#mac-os-x-ui-automation"><code>wait until</code></a></td>
         <td>Used to wait until the element is visible</td>
         <td>
-            <a href="#"><code>wait until "/AXApplication[@AXTitle='Calculator']"</code>
+            <a href="#mac-os-x-ui-automation"><code>wait until "/AXApplication[@AXTitle='Calculator']"</code>
         </td>
     </tr>
 </table>

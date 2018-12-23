@@ -62,7 +62,10 @@ def parse_english_to_json(input_file, output_file) :
     with  open(input_file, "r") as english_text :
         program = {}
         commands = []
+        line_number = 0
         for line in english_text :
+            line_number += 1
+            # Filetring out comments
             if line[0] == "#" :
                 continue
             did_match = False
@@ -108,7 +111,7 @@ def parse_english_to_json(input_file, output_file) :
                     else :
                         raise Exception("Unknown command type")
             if did_match == False :
-                raise Exception("Invalid syntax in command")
+                raise Exception("Invalid syntax in commandin line number : {line_number}".format(line_number=line_number))
         program["commands"] = commands
         if "open" not in program :
             raise Exception("Open not given for automation")

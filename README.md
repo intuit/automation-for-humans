@@ -280,6 +280,20 @@ New Keywords added :
     </tr>
 </table>
 
+#### Record and Replay functionality for Mac OS X apps
+[automation-for-humans] provides a record and replay functionality for users to records the actions and replay them.
+In fact the [sample-inputs/mac-osx-apps/calculator.txt](sample-inputs/mac-osx-apps/calculator.txt) has been generated using the same functionality.
+
+To records, first start [Appium For Mac]. Then in the terminal execute :
+```bash
+python3 src/action-recorder-mac.py <app-name> <output-file-path>
+```
+
+Press `Ctrl + C` to terminalte the script from recording.
+
+This will produce a file with all the commands that you have executed in a way that [automation-for-humans] understands. For readability,
+the script also add in a comment before each line (starting with `#`) which attempts to be the english version of the same command.
+
 [automation-for-humans]: https://github.com/intuit/automation-for-humans
 [XPath]: https://en.wikipedia.org/wiki/XPath
 [CircleCI]: https://circleci.com/

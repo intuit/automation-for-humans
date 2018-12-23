@@ -106,64 +106,63 @@ Another aspect core to [automation-for-humans] is that it does not store [XPath]
 Integrating with [automation-for-humans] is extremely simple and involves just one step, <b>installing the dependencies</b>.
 
 ### OS support :
-<table>
-    <tr>
-        <td>
-            <img
-                src="https://s3.amazonaws.com/hs-wordpress/wp-content/uploads/2017/12/12151712/windows-logo-HS1.png"
-                height="100"
-                width="100"
-            />
-        </td>
-        <td>
-            <a href="./src/install-dependencies/install-dependencies-win.bat">
-                install-dependencies-win.bat
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/2000px-Tux.svg.png"
-                height="100"
-                width="100"
-            />
-        </td>
-        <td>
-            <a href="./src/install-dependencies/install-dependencies-linux.sh">
-                install-dependencies-linux.sh
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <img
-                src="https://cdn.freebiesupply.com/images/large/2x/apple-logo-transparent.png"
-                height="100"
-                width="100"
-            />
-        </td>
-        <td>
-            <a href="./src/install-dependencies/install-dependencies-mac.sh">
-                install-dependencies-linux.sh
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <img
-                src="https://www.docker.com/sites/default/files/social/docker_facebook_share.png"
-                height="100"
-                width="100"
-            />
-        </td>
-        <td>
-            <a href="https://github.com/automation-for-humans/docker-image">
-                automation-for-humans/docker-image
-            </a>
-        </td>
-    </tr>
-</table>
+
+<div align="center">
+    <table>
+        <tr>
+            <td>
+                <img
+                    src="https://s3.amazonaws.com/hs-wordpress/wp-content/uploads/2017/12/12151712/windows-logo-HS1.png"
+                    height="100"
+                    width="100"
+                />
+            </td>
+            <td>
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/2000px-Tux.svg.png"
+                    height="100"
+                    width="100"
+                />
+            </td>
+            <td>
+                <img
+                    src="https://cdn.freebiesupply.com/images/large/2x/apple-logo-transparent.png"
+                    height="100"
+                    width="100"
+                />
+            </td>
+            <td>
+                <img
+                    src="https://www.docker.com/sites/default/files/social/docker_facebook_share.png"
+                    height="100"
+                    width="100"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="./src/install-dependencies/install-dependencies-win.bat">
+                    install-dependencies-win.bat
+                </a>
+            </td>
+            <td>
+                <a href="./src/install-dependencies/install-dependencies-linux.sh">
+                    install-dependencies-linux.sh
+                </a>
+            </td>
+            <td>
+                <a href="./src/install-dependencies/install-dependencies-mac.sh">
+                    install-dependencies-linux.sh
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/automation-for-humans/docker-image">
+                    automation-for-humans/docker-image
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
 
 ### CI-Platforms
 <table>
@@ -176,21 +175,21 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
             />
         </td>
         <td>
-            <a href="./.circleci/config.yml">
-                .circleci/config.yml
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>
             <img
                 src="https://travis-ci.com/images/logos/TravisCI-Mascot-pride.png"
                 height="100"
                 width="100"
             />
         </td>
+    </tr>
+    <tr>
         <td>
-            <a href="#english-keywords">
+            <a href="./.circleci/config.yml">
+                .circleci/config.yml
+            </a>
+        </td>
+        <td>
+            <a href="#ci-platforms">
                 Coming Soon!
             </a>
         </td>

@@ -152,7 +152,7 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
             </td>
             <td>
                 <a href="./src/install-dependencies/install-dependencies-mac.sh">
-                    install-dependencies-linux.sh
+                    install-dependencies-mac.sh
                 </a>
             </td>
             <td>

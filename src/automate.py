@@ -12,6 +12,7 @@ import os
 import json
 import time
 from multiprocessing import Process
+import subprocess
 import slackbot
 
 platform = None
@@ -23,7 +24,7 @@ def set_platform(plat) :
     elif plat == "mac" :
         platform = mac
     else :
-        raise Exception("Unsupported platform")
+        raise Exception("[Error] Unsupported platform")
 
 def execute_command(driver, command) :
     element = ""
@@ -44,39 +45,44 @@ def execute_command(driver, command) :
 
 def run_executable(executable, arguments) :
     # There might be different places from where we m ight consume the instructions to execute.
-    if executable["type"] == "file" :
-        input_file = executable["location"]
-        output_file = input_file.replace(".txt", ".json")
+    if executable[TYPE] == "file" :
+        input_file = executable[LOCATION]
+        output_file = input_file.replace(TXT, JSON)
     else :
-        raise Exception("Unsupported executable type")
+        raise Exception("[Error] Unsupported executable type")
 
     # We parse the english statements into our custom JSON format.
     # input_file : File with english statements.
     # output_file : File with JSON format.
-    parse_english.parse_english_to_json(input_file, output_file)
+
+    # Yo! New Parser on the block.
+    parse_exit_code = subprocess.call(parse_command + [input_file, output_file])
+    if parse_exit_code != 0 :
+        raise Exception("[Error] Parse Error")
 
     input_file = output_file
 
     # If .lock file is present, then we directly read from it.
-    if os.path.isfile(input_file + ".lock") :
-        input_file = input_file + ".lock"
+    if os.path.isfile(input_file + LOCK) :
+        input_file = input_file + LOCK
 
     # Parse the JSON file.
     program = parse.parse_input(input_file)
 
     locked_program = program
 
-    command_number = 0
+    command_number = 1 # Lol we start our execution from index=1, wasted one hour changing this from 0 to 1
 
-    if "open" in program :
+    # The 0th command has to be open!
+    if program[COMMANDS][0][TYPE] == OPEN_ACTION :
         driver = platform.init_driver()
         platform.init_app(driver, program, arguments)
 
         # Initialising the stuff required for recordings
-        screenshot_folder = recording_init(executable["name"])
+        screenshot_folder = recording_init(executable[NAME])
 
         # Now its time to execute the automation.
-        for command in program["commands"] :
+        for command in program[COMMANDS][1:] :
 
             print("[LOG] Executing Command : ", command)
             # Before executing every command take a screenshot
@@ -84,16 +90,15 @@ def run_executable(executable, arguments) :
             driver.save_screenshot(screenshot_file_name)
 
             mode = execute_command(driver, command)
-
-            locked_program["commands"][command_number]["mode"] = mode
+            locked_program[COMMANDS][command_number][MODE] = mode
             command_number += 1
         driver.close()
     else :
-        raise Exception("Program Error! Open not specified!")
+        raise Exception("[Error] Program Error! Open not specified!")
 
     # If we had not read the commands from a lock file, we will generate one now.
-    if ".lock" not in input_file :
-        with open(input_file + ".lock","w") as lock_file :
+    if LOCK not in input_file :
+        with open(input_file + LOCK, "w") as lock_file :
             json.dump(locked_program, lock_file, indent=4)
 
 def get_suites() :
@@ -135,8 +140,8 @@ def run_parallel(runnables, arguments) :
     results = []
     for runnable in runnables :
         executables = get_executables(runnable)
-        set_platform(executables["platform"])
-        for executable in executables["executables"] :
+        set_platform(executables[PLATFORM])
+        for executable in executables[EXECUTABLES] :
             print("[LOG] Running Executable : ", executable)
             p = Process(target=run_executable, args=(executable, arguments))
             jobs.append((p, executable, runnable))
@@ -151,8 +156,8 @@ def run_serial(runnables, arguments) :
     results = []
     for runnable in runnables :
         executables = get_executables(runnable)
-        set_platform(executables["platform"])
-        for executable in executables["executables"] :
+        set_platform(executables[PLATFORM])
+        for executable in executables[EXECUTABLES] :
             try :
                 run_executable(executable, arguments)
                 results.append((executables, executable, 0))
@@ -165,14 +170,14 @@ def run_serial(runnables, arguments) :
 if __name__ == "__main__" :
     # Get the suites to execute.
     suites = get_suites()
-    runnables = suites["runnables"]
+    runnables = suites[RUNNABLES]
 
     # Get the arguments from the file.
     arguments = get_arguments()
 
     results = []
 
-    if suites["execution-mode"] == "parallel" :
+    if suites[EXECUTION_MODE] == "parallel" :
         results = run_parallel(runnables, arguments)
     else :
         results = run_serial(runnables, arguments)
@@ -183,11 +188,11 @@ if __name__ == "__main__" :
     exit_status = True
     for runnable, executable, result in results :
         if result != 0 :
-            print ("Error in : ", executable["name"])
+            print ("[Error] Error in : ", executable[NAME])
             exit_status = False
     if not exit_status :
-        print ("Exiting with error!")
+        print ("[Error] Exiting!")
         exit(1)
     else :
-        print ("Success!")
+        print ("[LOG] Success!")
         exit(0)

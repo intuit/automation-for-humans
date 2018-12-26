@@ -7,33 +7,34 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
 import common
+from constants import *
 
 # This is for finding the element like <div>text</div>
 def generate_xpath_text(command) :
     index = "1"
-    if "index" in command :
-        index = command["index"]
-    return "(//*[text()='{text}'])[position() = {index}]".format(text=command["args"][-1], index=index)
+    if command[ARGS][INDEX] != "" :
+        index = command[ARGS][INDEX]
+    return "(//*[text()='{text}'])[position() = {index}]".format(text=command[ARGS][SUBJECT], index=index)
 
 # Generates the XPATH of an element with any generic attribute.
 def generate_xpath_for_generic_attribute(command) :
     index = "1"
-    if "index" in command :
-        index = command["index"]
-    return "(//*[@{attribute}='{text}'])[position() = {index}]".format(text=command["args"][-1], index=index, attribute=command["attribute"])
+    if command[ARGS][INDEX] != "" :
+        index = command[ARGS][INDEX]
+    return "(//*[@{attribute}='{text}'])[position() = {index}]".format(text=command[ARGS][SUBJECT], index=index, attribute=command[ARGS][ATTRIBUTE])
 
 # Specialised function to find element by placeholder. Eg. <input placeholder="text" />
 def generate_xpath_placeholder(command) :
-    command["attribute"] = "placeholder"
+    command[ARGS][ATTRIBUTE] = "placeholder"
     return generate_xpath_for_generic_attribute(command)
 
 # Specialised function to find element by name Eg. <input name="text" />
 def generate_xpath_name(command) :
-    return command["args"][-1].replace(" ", "")
+    return command[ARGS][SUBJECT].replace(" ", "")
 
 # Specialised function to find element by value Eg. <input value="text" />
 def generate_xpath_value(command) :
-    command["attribute"] = "value"
+    command[ARGS][ATTRIBUTE] = "value"
     return generate_xpath_for_generic_attribute(command)
 
 # These are the different mode in which we find an element on the screen.
@@ -44,11 +45,11 @@ def find_element(driver, command) :
     # If mode is already present, then the North Remembers :p, and we remember how to get the element.
     # If we are finding the element by attribute the the mode is fixed.
     mode_index = 0
-    timeout_seconds = 5
+    timeout_seconds = 2
     if "mode" in command :
-        mode_index = execute_modes.index(command["mode"])
+        mode_index = execute_modes.index(command[MODE])
         timeout_seconds = 15
-    elif "attribute" in command :
+    elif command[ARGS][ATTRIBUTE] != "" :
         mode_index = execute_modes.index("ATTRIBUTE")
     else :
         mode_index = 0
@@ -82,9 +83,9 @@ def find_element(driver, command) :
                 element = common.find_element(driver, timeout_seconds, mode, xpath)
                 break
             else :
-                raise Exception("Invalid mode  found while parsing command", command)
+                raise Exception("[Error] Invalid mode found while parsing command : ", command)
         except :
-            print ("Element not while searching in mode : ", mode)
+            print ("[LOG] Element not while searching in mode : ", mode)
             mode_index += 1
             continue
 
@@ -107,4 +108,4 @@ def init_driver() :
     return driver
 
 def init_app(driver, program, arguments) :
-    driver.get(program["open"].format(**arguments))
+    driver.get(program[COMMANDS][0][ARGS][SUBJECT].format(**arguments))

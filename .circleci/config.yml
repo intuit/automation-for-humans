@@ -7,6 +7,8 @@ jobs:
       - image: rohithr31/automation-for-humans
     steps:
       - checkout
+      - run: git submodule update --init
+      - run: cd dsl/ && make alpine
       - run:
           name: "Build"
           command: "python3 src/automate.py"

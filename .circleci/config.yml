@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - run: git submodule update --init
-      - run: cd dsl/ && make alpine
+      - run: make -C dsl/ alpine
       - run:
           name: "Build"
           command: "python3 src/automate.py"

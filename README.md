@@ -11,7 +11,12 @@ Converts english statements to Selenium Automation.
 <img src="./docs/images/demo.gif" />
 
 ## How to use
-
+- See <a href="#integrating-with-any-environment">integrating-with-any-environment</a> to see how to install the dependencies.
+- Install the parser. See the [DSL] repo for more details.
+```bash
+git submodule update --init
+make -C dsl/ alpine
+```
 - Write English statements for some flow.
     - See [github navigation demo](./sample-inputs/public-sites/github-nav-demo.txt) for reference.
 - Define a suite say `public-sites`.
@@ -297,3 +302,4 @@ the script also add in a comment before each line (starting with `#`) which atte
 [XPath]: https://en.wikipedia.org/wiki/XPath
 [CircleCI]: https://circleci.com/
 [Appium For Mac]: https://github.com/appium/appium-for-mac
+[DSL]: https://github.com/automation-for-humans/dsl

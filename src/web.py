@@ -45,7 +45,7 @@ def find_element(driver, command) :
     # If mode is already present, then the North Remembers :p, and we remember how to get the element.
     # If we are finding the element by attribute the the mode is fixed.
     mode_index = 0
-    timeout_seconds = 2
+    timeout_seconds = 5
     if "mode" in command :
         mode_index = execute_modes.index(command[MODE])
         timeout_seconds = 15

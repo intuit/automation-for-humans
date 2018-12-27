@@ -1,86 +1,102 @@
 {
     "commands": [
         {
-            "attribute": "placeholder", 
-            "args": [
-                "afh-random-user", 
-                "Pick a username"
-            ], 
+            "args": {
+                "subject": "https://github.com/"
+            }, 
+            "type": "open"
+        }, 
+        {
+            "args": {
+                "attribute": "placeholder", 
+                "subject": "Pick a username", 
+                "input": "afh-random-user", 
+                "index": ""
+            }, 
             "type": "type", 
             "mode": "PLACEHOLDER"
         }, 
         {
-            "attribute": "placeholder", 
-            "args": [
-                "afh_random_user@afh.com", 
-                "you@example.com"
-            ], 
+            "args": {
+                "attribute": "placeholder", 
+                "subject": "you@example.com", 
+                "input": "afh_random_user@afh.com", 
+                "index": ""
+            }, 
             "type": "type", 
             "mode": "PLACEHOLDER"
         }, 
         {
-            "attribute": "placeholder", 
-            "args": [
-                "afh_random_password", 
-                "Create a password"
-            ], 
+            "args": {
+                "attribute": "placeholder", 
+                "subject": "Create a password", 
+                "input": "afh_random_password", 
+                "index": ""
+            }, 
             "type": "type", 
             "mode": "PLACEHOLDER"
         }, 
         {
-            "attribute": "placeholder", 
-            "args": [
-                "karate", 
-                "Search GitHub"
-            ], 
+            "args": {
+                "attribute": "placeholder", 
+                "subject": "Search GitHub", 
+                "input": "karate", 
+                "index": ""
+            }, 
             "type": "type", 
             "mode": "PLACEHOLDER"
         }, 
         {
-            "attribute": "placeholder", 
-            "args": [
-                "karate"
-            ], 
+            "args": {
+                "attribute": "placeholder", 
+                "subject": "karate", 
+                "index": ""
+            }, 
             "type": "click", 
             "mode": "XPATH"
         }, 
         {
-            "attribute": "placeholder", 
-            "args": [
-                "karate"
-            ], 
+            "args": {
+                "attribute": "placeholder", 
+                "subject": "karate", 
+                "index": ""
+            }, 
             "type": "click", 
             "mode": "XPATH"
         }, 
         {
-            "attribute": "placeholder", 
-            "args": [
-                "Issues"
-            ], 
+            "args": {
+                "attribute": "placeholder", 
+                "subject": "Issues", 
+                "index": ""
+            }, 
             "type": "click", 
             "mode": "XPATH"
         }, 
         {
-            "attribute": "placeholder", 
-            "args": [
-                "Labels"
-            ], 
+            "args": {
+                "attribute": "placeholder", 
+                "subject": "Labels", 
+                "index": ""
+            }, 
             "type": "click", 
             "mode": "XPATH"
         }, 
         {
-            "attribute": "placeholder", 
-            "args": [
-                "bug"
-            ], 
+            "args": {
+                "attribute": "placeholder", 
+                "subject": "bug", 
+                "index": ""
+            }, 
             "type": "click", 
             "mode": "XPATH"
         }, 
         {
+            "args": {
+                "subject": "10"
+            }, 
             "type": "wait", 
-            "mode": "", 
-            "time": 10
+            "mode": ""
         }
-    ], 
-    "open": "https://github.com/"
+    ]
 }

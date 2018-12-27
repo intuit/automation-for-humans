@@ -1,0 +1,3 @@
+[submodule "dsl"]
+	path = dsl
+	url = https://github.com/automation-for-humans/dsl.git

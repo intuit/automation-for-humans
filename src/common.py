@@ -1,4 +1,5 @@
 import time
+from constants import *
 
 # All selenium imports
 from selenium import webdriver
@@ -16,29 +17,29 @@ def find_element(driver, timeout_seconds, mode, xpath) :
         return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.XPATH, xpath)))
 
 def execute_action(driver, command, element) :
-    if command["type"] == "click" :
+    if command[TYPE] == CLICK_ACTION :
         ActionChains(driver).move_to_element(element).click().perform()
-    elif command["type"] == "click if present" :
+    elif command[TYPE] == CLICK_IF_PRESENT_ACTION :
         try :
             ActionChains(driver).move_to_element(element).click().perform()
         except :
             print("[LOG][Not Found Element] click if present : ", element)
-    elif command["type"] == "hover" :
+    elif command[TYPE] == HOVER_ACTION :
         ActionChains(driver).move_to_element(element).perform()
-    elif command["type"] == "type" :
-        element.send_keys(command["args"][0])
-    elif command["type"] == "wait until" :
+    elif command[TYPE] == TYPE_ACTION :
+        element.send_keys(command[ARGS][INPUT])
+    elif command[TYPE] == WAIT_UNTIL_ACTION :
         pass
     else :
-        raise Exception("Command Type Not Found : ", command["type"])
+        raise Exception("[Error] Command Type Not Found : ", command[TYPE])
 
 def execute_non_element_action(driver, command) :
     # Here are all the commands that don't require finding an element.
-    if command["type"] == "wait" :
-        time.sleep(int(command["time"]))
+    if command[TYPE] == WAIT_ACTION :
+        time.sleep(int(command[ARGS][SUBJECT]))
         return True
-    elif command["type"] == "execjs" :
-        driver.execute_script(command["js"])
+    elif command[TYPE] == EXECJS_ACTION :
+        driver.execute_script(command[ARGS][SUBJECT])
         return True
     else :
         return False

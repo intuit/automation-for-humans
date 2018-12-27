@@ -1,67 +1,92 @@
 {
     "commands": [
         {
-            "args": [
-                "afh-random-user", 
-                "Pick a username"
-            ], 
+            "args": {
+                "subject": "https://github.com/"
+            },
+            "type": "open"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "index": "",
+                "input": "afh-random-user",
+                "subject": "Pick a username"
+            },
             "type": "type"
-        }, 
+        },
         {
-            "args": [
-                "afh_random_user@afh.com", 
-                "you@example.com"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "input": "afh_random_user@afh.com",
+                "subject": "you@example.com"
+            },
             "type": "type"
-        }, 
+        },
         {
-            "args": [
-                "afh_random_password", 
-                "Create a password"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "input": "afh_random_password",
+                "subject": "Create a password"
+            },
             "type": "type"
-        }, 
+        },
         {
-            "args": [
-                "karate", 
-                "Search GitHub"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "input": "karate",
+                "subject": "Search GitHub"
+            },
             "type": "type"
-        }, 
+        },
         {
-            "args": [
-                "karate"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "karate"
+            },
             "type": "click"
-        }, 
+        },
         {
-            "args": [
-                "karate"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "karate"
+            },
             "type": "click"
-        }, 
+        },
         {
-            "args": [
-                "Issues"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "Issues"
+            },
             "type": "click"
-        }, 
+        },
         {
-            "args": [
-                "Labels"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "Labels"
+            },
             "type": "click"
-        }, 
+        },
         {
-            "args": [
-                "bug"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "bug"
+            },
             "type": "click"
-        }, 
+        },
         {
-            "type": "wait", 
-            "time": 10
+            "args": {
+                "subject": "10"
+            },
+            "type": "wait"
         }
-    ], 
-    "open": "https://github.com/"
+    ]
 }

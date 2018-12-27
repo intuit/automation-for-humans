@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
 import common
+from constants import *
 
 desiredCapabilities = {
     'platform': 'Mac',
@@ -21,9 +22,9 @@ APPIUM_URL = "http://localhost:4622/wd/hub"
 def find_element(driver, command) :
     timeout_seconds = 5
     mode = "XPATH"
-    xpath = command["args"][-1]
+    xpath = command[ARGS][SUBJECT]
 
-    if command["type"] == "wait until" :
+    if command[TYPE] == WAIT_UNTIL_ACTION :
         timeout_seconds = 600
 
     element = common.find_element(driver, timeout_seconds, mode, xpath)
@@ -35,4 +36,4 @@ def init_driver() :
     return driver
 
 def init_app(driver, program, arguments) :
-    driver.get(program["open"])
+    driver.get(program[COMMANDS][0][ARGS][SUBJECT])

@@ -11,7 +11,12 @@ Converts english statements to Selenium Automation.
 <img src="./docs/images/demo.gif" />
 
 ## How to use
-
+- See <a href="#integrating-with-any-environment">integrating-with-any-environment</a> to see how to install the dependencies.
+- Install the parser. See the [DSL] repo for more details.
+```bash
+git submodule update --init
+make -C dsl/ alpine
+```
 - Write English statements for some flow.
     - See [github navigation demo](./sample-inputs/public-sites/github-nav-demo.txt) for reference.
 - Define a suite say `public-sites`.
@@ -152,7 +157,7 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
             </td>
             <td>
                 <a href="./src/install-dependencies/install-dependencies-mac.sh">
-                    install-dependencies-linux.sh
+                    install-dependencies-mac.sh
                 </a>
             </td>
             <td>
@@ -271,10 +276,10 @@ New Keywords added :
         <th>Example</th>
     </tr>
     <tr>
-        <td><a href="#"><code>wait until</code></a></td>
+        <td><a href="#mac-os-x-ui-automation"><code>wait until</code></a></td>
         <td>Used to wait until the element is visible</td>
         <td>
-            <a href="#"><code>wait until "/AXApplication[@AXTitle='Calculator']"</code>
+            <a href="#mac-os-x-ui-automation"><code>wait until "/AXApplication[@AXTitle='Calculator']"</code>
         </td>
     </tr>
 </table>
@@ -297,3 +302,4 @@ the script also add in a comment before each line (starting with `#`) which atte
 [XPath]: https://en.wikipedia.org/wiki/XPath
 [CircleCI]: https://circleci.com/
 [Appium For Mac]: https://github.com/appium/appium-for-mac
+[DSL]: https://github.com/automation-for-humans/dsl

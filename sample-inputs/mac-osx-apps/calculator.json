@@ -1,29 +1,42 @@
 {
     "commands": [
         {
-            "args": [
-                "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:92']"
-            ], 
-            "type": "click"
-        }, 
+            "args": {
+                "subject": "calculator"
+            },
+            "type": "open"
+        },
         {
-            "args": [
-                "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:466']"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:92']"
+            },
             "type": "click"
-        }, 
+        },
         {
-            "args": [
-                "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:112']"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:466']"
+            },
             "type": "click"
-        }, 
+        },
         {
-            "args": [
-                "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:447']"
-            ], 
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:112']"
+            },
+            "type": "click"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:447']"
+            },
             "type": "click"
         }
-    ], 
-    "open": "calculator"
+    ]
 }

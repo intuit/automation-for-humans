@@ -123,7 +123,7 @@ def run() :
 
 # https://stackoverflow.com/questions/1112343/how-do-i-capture-sigint-in-python/10972804
 def signal_handler(sig, frame):
-        print('You pressed Ctrl+C!')
+        print("You pressed Ctrl+C!\n")
         sys.exit(0)
 
 if __name__ == "__main__" :

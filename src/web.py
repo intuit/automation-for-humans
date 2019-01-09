@@ -8,6 +8,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 import common
 from constants import *
+from config import *
 
 # This is for finding the element like <div>text</div>
 def generate_xpath_text(command) :
@@ -45,10 +46,10 @@ def find_element(driver, command) :
     # If mode is already present, then the North Remembers :p, and we remember how to get the element.
     # If we are finding the element by attribute the the mode is fixed.
     mode_index = 0
-    timeout_seconds = 5
+    timeout_seconds = config["action-small-timeout-seconds"]
     if "mode" in command :
         mode_index = execute_modes.index(command[MODE])
-        timeout_seconds = 15
+        timeout_seconds = config["action-mode-timeout-seconds"]
     elif command[ARGS][ATTRIBUTE] != "" :
         mode_index = execute_modes.index("ATTRIBUTE")
     else :
@@ -97,13 +98,14 @@ def init_driver() :
     # Initialise the options.
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
-    options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
 
+    if config["run-headless"] :
+        options.add_argument('--headless')
     # Initialise the driver.
     driver = webdriver.Chrome(chrome_options=options)
-    driver.set_window_size(1920, 1080)
+    driver.set_window_size(config["window-width"], config["window-height"])
 
     return driver
 

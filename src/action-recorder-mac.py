@@ -105,7 +105,7 @@ def recorder(output_file_name) :
                 continue
 
             command = ""
-            if current_clipboard_value != previous_clipboard_value :
+            if current_clipboard_value != previous_clipboard_value and current_clipboard_value != "" :
                 previous_clipboard_value = current_clipboard_value
 
                 if TEXT_FIELD_AXPATH in current_clipboard_value :
@@ -123,7 +123,7 @@ def run() :
 
 # https://stackoverflow.com/questions/1112343/how-do-i-capture-sigint-in-python/10972804
 def signal_handler(sig, frame):
-        print('You pressed Ctrl+C!')
+        print("You pressed Ctrl+C!\n")
         sys.exit(0)
 
 if __name__ == "__main__" :

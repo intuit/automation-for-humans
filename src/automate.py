@@ -1,6 +1,5 @@
 # This is the main file which controls the logic for the UI automation.
 import parse
-import parse_english
 import common
 from constants import *
 

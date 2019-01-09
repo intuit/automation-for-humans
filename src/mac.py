@@ -8,6 +8,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 import common
 from constants import *
+from config import *
 
 desiredCapabilities = {
     'platform': 'Mac',
@@ -20,12 +21,12 @@ desiredCapabilities = {
 APPIUM_URL = "http://localhost:4622/wd/hub"
 
 def find_element(driver, command) :
-    timeout_seconds = 5
+    timeout_seconds = config["action-small-timeout-seconds"]
     mode = "XPATH"
     xpath = command[ARGS][SUBJECT]
 
     if command[TYPE] == WAIT_UNTIL_ACTION :
-        timeout_seconds = 600
+        timeout_seconds = config["action-large-timeout-seconds"]
 
     element = common.find_element(driver, timeout_seconds, mode, xpath)
 

@@ -1,7 +1,5 @@
 language: python
 os: osx
-python:
-    - 3.6
 before_install:
     - brew install brew-cask
     - brew cask install google-chrome

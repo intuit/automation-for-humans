@@ -2,8 +2,6 @@ import time
 from constants import *
 
 # All selenium imports
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -22,7 +20,7 @@ def execute_action(driver, command, element) :
     elif command[TYPE] == CLICK_IF_PRESENT_ACTION :
         try :
             ActionChains(driver).move_to_element(element).click().perform()
-        except :
+        except Exception :
             print("[LOG][Not Found Element] click if present : ", element)
     elif command[TYPE] == HOVER_ACTION :
         ActionChains(driver).move_to_element(element).perform()

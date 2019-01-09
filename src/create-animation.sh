@@ -1,3 +1,4 @@
+#!/bin/sh
 current_folder=$(pwd)
 echo $current_folder
 for file in recordings/* ; do

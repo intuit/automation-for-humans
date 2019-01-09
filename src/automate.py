@@ -35,7 +35,7 @@ def execute_command(driver, command) :
     # We need to add sleep here because, some UI elements take time to refresh.
     time.sleep(1)
 
-    element, mode, xpath = platform.find_element(driver, command)
+    element, mode, _ = platform.find_element(driver, command)
 
     common.execute_action(driver, command, element)
 
@@ -151,7 +151,6 @@ def run_parallel(runnables, arguments) :
     return results
 
 def run_serial(runnables, arguments) :
-    jobs = []
     results = []
     for runnable in runnables :
         executables = get_executables(runnable)

@@ -1,10 +1,5 @@
 # All selenium imports
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
 
 import common
 from constants import *
@@ -77,7 +72,7 @@ def find_element(driver, command) :
                 break
             elif mode == "VALUE" :
                 xpath = generate_xpath_value(command)
-                element = find_element(driver, timeout_seconds, mode, xpath)
+                element = common.find_element(driver, timeout_seconds, mode, xpath)
                 break
             elif mode == "ATTRIBUTE" :
                 xpath = generate_xpath_for_generic_attribute(command)
@@ -85,7 +80,7 @@ def find_element(driver, command) :
                 break
             else :
                 raise Exception("[Error] Invalid mode found while parsing command : ", command)
-        except :
+        except Exception :
             print ("[LOG] Element not while searching in mode : ", mode)
             mode_index += 1
             continue

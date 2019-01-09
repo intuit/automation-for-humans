@@ -1,5 +1,4 @@
 # This intendes to be an action record and replay tool for Mac OS X
-import time
 import sys
 import os
 import re
@@ -48,7 +47,7 @@ def find_english_equivalent(axpath) :
             return title_matches[-1][1]
         else :
             return "\"\""
-    except :
+    except Exception :
         return "\"\""
 
 # Handles text-field related actions

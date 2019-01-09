@@ -1,10 +1,8 @@
 import json
-import os
 import requests
 
 def post_results_to_slack(results) :
     runnable_details = {}
-    attachments = []
     for runnable, executable, result in results :
         if "slack" in runnable :
             color = "good" if result == 0 else "danger"

@@ -1,3 +1,4 @@
+#!/bin/sh
 sudo apt-get update
 sudo apt-get install python3-pip python3-dev build-essential imagemagick apt-transport-https
 sudo pip3 install selenium pysocks urllib3 --upgrade

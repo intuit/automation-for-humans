@@ -1,0 +1,10 @@
+language: python
+os: osx
+python:
+    - 3.4
+before_install:
+    - brew install brew-cask
+    - brew cask install google-chrome
+    - pip3 install selenium
+script:
+    - python src/automate.py

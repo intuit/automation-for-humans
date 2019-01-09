@@ -105,7 +105,7 @@ def recorder(output_file_name) :
                 continue
 
             command = ""
-            if current_clipboard_value != previous_clipboard_value :
+            if current_clipboard_value != previous_clipboard_value and current_clipboard_value != "" :
                 previous_clipboard_value = current_clipboard_value
 
                 if TEXT_FIELD_AXPATH in current_clipboard_value :

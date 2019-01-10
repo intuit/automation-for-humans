@@ -2,9 +2,9 @@ sudo: required
 os: osx
 install:
   - brew update
-  - brew install python
-  - brew install brew-cask
-  - brew cask install google-chrome
+  - brew install python || true
+  - brew install brew-cask || true
+  - brew cask install google-chrome || true
   - pip3 install selenium
 script:
   - python src/automate.py

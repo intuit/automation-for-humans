@@ -5,7 +5,7 @@ install:
   - brew install python || true
   - brew install brew-cask || true
   - brew cask install google-chrome || true
-  - brew install flex bison
+  - brew install flex bison chromedriver || true
   - pip install selenium pysocks urllib3 requests
 script:
   - make -C dsl/

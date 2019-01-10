@@ -5,6 +5,6 @@ install:
   - brew install python || true
   - brew install brew-cask || true
   - brew cask install google-chrome || true
-  - pip3 install selenium
+  - pip install selenium
 script:
   - python src/automate.py

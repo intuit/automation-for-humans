@@ -1,9 +1,7 @@
 sudo: required
-language: python
-python:
-  - 3.6
 os: osx
 install:
+  - brew install python
   - brew install brew-cask
   - brew cask install google-chrome
   - pip3 install selenium

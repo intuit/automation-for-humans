@@ -1,6 +1,7 @@
+sudo: required
 language: python
 python:
-    - "3.6"
+    - 2.7
 os: osx
 before_install:
     - brew install brew-cask

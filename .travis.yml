@@ -1,11 +1,11 @@
 sudo: required
 language: python
 python:
-    - 2.7
+  - 3.6
 os: osx
-before_install:
-    - brew install brew-cask
-    - brew cask install google-chrome
-    - pip3 install selenium
+install:
+  - brew install brew-cask
+  - brew cask install google-chrome
+  - pip3 install selenium
 script:
-    - python src/automate.py
+  - python src/automate.py

@@ -1,10 +1,12 @@
-language: python
+sudo: required
 os: osx
-python:
-    - 3.4
-before_install:
-    - brew install brew-cask
-    - brew cask install google-chrome
-    - pip3 install selenium
+install:
+  - brew update
+  - brew install python || true
+  - brew install brew-cask || true
+  - brew cask install google-chrome chromedriver || true
+  - brew install flex bison || true
+  - pip install selenium pysocks urllib3 requests
 script:
-    - python src/automate.py
+  - make -C dsl/
+  - python src/automate.py

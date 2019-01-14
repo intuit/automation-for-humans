@@ -7,6 +7,7 @@
 Converts english statements to Selenium Automation.
 
 ## Architecture
+
 <img src="./docs/images/architecture.png" />
 
 ## Demo

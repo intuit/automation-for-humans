@@ -1,6 +1,8 @@
 <img src="./docs/images/logo.png"  height=200 align="right"/>
 
-# automation-for-humans ![circle-ci](https://img.shields.io/circleci/project/github/intuit/text-provider/master.svg?style=flat-square&logo=circleci) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/87d7131d090e4e6db3a99f823a923e19)](https://www.codacy.com/app/rohithr31/automation-for-humans?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=intuit/automation-for-humans&amp;utm_campaign=Badge_Grade)
+# automation-for-humans
+
+![circle-ci](https://img.shields.io/circleci/project/github/intuit/text-provider/master.svg?style=flat-square&logo=circleci) [![Build Status](https://travis-ci.org/intuit/automation-for-humans.svg?branch=master)](https://travis-ci.org/intuit/automation-for-humans) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/87d7131d090e4e6db3a99f823a923e19)](https://www.codacy.com/app/rohithr31/automation-for-humans?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=intuit/automation-for-humans&amp;utm_campaign=Badge_Grade)
 
 Converts english statements to Selenium Automation.
 
@@ -194,8 +196,8 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
             </a>
         </td>
         <td>
-            <a href="#ci-platforms">
-                Coming Soon!
+            <a href="./.travis.yml">
+                .travis.yml
             </a>
         </td>
     </tr>

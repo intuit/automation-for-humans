@@ -7,6 +7,9 @@ install:
   - brew cask install google-chrome chromedriver || true
   - brew install flex bison || true
   - pip install selenium pysocks urllib3 requests
+  - wget https://github.com/appium/appium-for-mac/releases/download/v0.3.0/AppiumForMac.zip
+  - unzip AppiumForMac.zip
+  - open -a AppiumForMac.app
 script:
   - make -C dsl/
   - python src/automate.py

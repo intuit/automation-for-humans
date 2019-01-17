@@ -93,10 +93,21 @@
         }, 
         {
             "args": {
-                "subject": "10"
+                "attribute": "placeholder", 
+                "subject": "Milestones", 
+                "index": ""
             }, 
-            "type": "wait", 
-            "mode": ""
+            "type": "assert", 
+            "mode": "XPATH"
+        }, 
+        {
+            "args": {
+                "attribute": "href", 
+                "subject": "/intuit/karate", 
+                "index": ""
+            }, 
+            "type": "assert", 
+            "mode": "ATTRIBUTE"
         }
     ]
 }

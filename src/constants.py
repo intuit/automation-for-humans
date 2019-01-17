@@ -14,6 +14,7 @@ EXECJS_ACTION = "execjs"
 WAIT_ACTION = "wait"
 CLICK_IF_PRESENT_ACTION = "click if present"
 WAIT_UNTIL_ACTION = "wait until"
+ASSERT_ACTION = "assert"
 
 # Commands related constants
 COMMANDS = "commands"

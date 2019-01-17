@@ -95,6 +95,13 @@ python3 src/automate.py
         </td>
     </tr>
     <tr>
+        <td><a href="#english-keywords"><code>assert</code></a></td>
+        <td>Used for asserting elements are present on the screen</td>
+        <td>
+            <a href="#english-keywords"><code>assert "Milestones"</code>
+        </td>
+    </tr>
+    <tr>
         <td><a href="#english-keywords"><code>execjs</code></a></td>
         <td>Used to execute javascript inside the browser context</td>
         <td>
@@ -229,9 +236,16 @@ Sometimes one has no choice but to use the `id`'s, `class`, `automation-id` attr
     </tr>
     <tr>
         <td><a href="#advanced-keywords-use"><code>type</code></a></td>
-        <td>Used to type a string in some element with class name "#user-name"</td>
+        <td>Used to type a string in some element with class name `"#user-name"`</td>
         <td>
             <a href="#advanced-keywords-use"><code>type "afh-random-user" in "#user-name" "class"</code>
+        </td>
+    </tr>
+    <tr>
+        <td><a href="#english-keywords"><code>assert</code></a></td>
+        <td>Used for asserting an element with href as `"/intuit/automation-for-humans"`</td>
+        <td>
+            <a href="#english-keywords"><code>assert "/intuit/automation-for-humans" "href"</code>
         </td>
     </tr>
 </table>

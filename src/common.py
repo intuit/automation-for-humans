@@ -28,6 +28,8 @@ def execute_action(driver, command, element) :
         element.send_keys(command[ARGS][INPUT])
     elif command[TYPE] == WAIT_UNTIL_ACTION :
         pass
+    elif command[TYPE] == ASSERT_ACTION :
+        ActionChains(driver).move_to_element(element).perform()
     else :
         raise Exception("[Error] Command Type Not Found : ", command[TYPE])
 

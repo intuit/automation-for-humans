@@ -84,9 +84,19 @@
         },
         {
             "args": {
-                "subject": "10"
+                "attribute": "",
+                "index": "",
+                "subject": "Milestones"
             },
-            "type": "wait"
+            "type": "assert"
+        },
+        {
+            "args": {
+                "attribute": "href",
+                "index": "",
+                "subject": "/intuit/karate"
+            },
+            "type": "assert"
         }
     ]
 }

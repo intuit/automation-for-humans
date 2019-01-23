@@ -1,0 +1,2 @@
+open "C:/Windows/System32/notepad.exe"
+wait for "10" 

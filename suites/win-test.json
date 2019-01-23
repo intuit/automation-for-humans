@@ -1,0 +1,11 @@
+{
+    "name": "win-apps",
+    "platform": "win",
+    "executables": [
+        {
+            "name": "win-notepad-example",
+            "type": "file",
+            "location": "sample-inputs/win/win-notepad-example.txt"
+        }
+    ]
+}

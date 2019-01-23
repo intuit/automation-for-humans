@@ -89,7 +89,7 @@ def find_element(driver, command) :
         raise Exception("Element not found")
     return (element, mode, xpath)
 
-def init_driver() :
+def init_driver(program, arguments) :
     # Initialise the options.
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")

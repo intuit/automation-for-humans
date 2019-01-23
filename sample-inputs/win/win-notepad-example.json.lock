@@ -1,0 +1,17 @@
+{
+    "commands": [
+        {
+            "args": {
+                "subject": "C:/Windows/System32/notepad.exe"
+            }, 
+            "type": "open"
+        }, 
+        {
+            "args": {
+                "subject": "10"
+            }, 
+            "type": "wait", 
+            "mode": ""
+        }
+    ]
+}

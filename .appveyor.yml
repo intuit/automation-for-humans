@@ -13,12 +13,12 @@ install:
   - cinst winflexbison make
   - pip install selenium requests pysocks urllib3 --upgrade
 
-# scripts to run before build
-before_build:
-  - make -C dsl win
-
 # to disable automatic builds
 build: off
+
+# scripts to run before build
+before_test:
+  - make -C dsl win
 
 # to run your custom scripts instead of automatic tests
 test_script:

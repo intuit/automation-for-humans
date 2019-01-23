@@ -18,6 +18,7 @@ build: off
 
 # scripts to run before build
 before_test:
+  - git submodule update --init --recursive
   - make -C dsl win
 
 # to run your custom scripts instead of automatic tests

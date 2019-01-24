@@ -12,6 +12,7 @@ install:
   # by default, all script lines are interpreted as batch
   - cinst winflexbison make mingw
   - pip install selenium requests pysocks urllib3 --upgrade
+  - refreshenv
 
 # to disable automatic builds
 build: off

@@ -46,7 +46,9 @@ def execute_command(driver, command) :
     # We are returning mode to save it into the lock file.
     return mode
 
-def run_executable(executable, arguments) :
+def run_executable(executable, arguments, plat) :
+    set_platform(plat)
+
     # There might be different places from where we m ight consume the instructions to execute.
     if executable[TYPE] == "file" :
         input_file = executable[LOCATION]
@@ -116,7 +118,7 @@ def get_executables(runnable) :
             executables = json.load(runnable_file)
             return executables
     except Exception : # parent of IOError, OSError *and* WindowsError where available
-        print("Got exception while reading file : ", runnable)
+        print("[Error] Got exception while reading file : ", runnable)
         sys.exit(1)
 
 def recording_init(suite_name) :
@@ -147,15 +149,10 @@ def run_parallel(runnables, arguments) :
     results = []
     for runnable in runnables :
         executables = get_executables(runnable)
-        if executables[PLATFORM] == None :
-            print("Platform is None")
-            sys.exit(1)
-        print ("Found Platform", executables[PLATFORM])
         set_platform(executables[PLATFORM])
-        sys.stdout.flush()
         for executable in executables[EXECUTABLES] :
             print("[LOG] Running Executable : ", executable)
-            p = Process(target=run_executable, args=(executable, arguments))
+            p = Process(target=run_executable, args=(executable, arguments, executables[PLATFORM]))
             jobs.append((p, executable, runnable))
             p.start()
     for proc, executable, runnable in jobs :
@@ -170,7 +167,7 @@ def run_serial(runnables, arguments) :
         set_platform(executables[PLATFORM])
         for executable in executables[EXECUTABLES] :
             try :
-                run_executable(executable, arguments)
+                run_executable(executable, arguments, executables[PLATFORM])
                 results.append((executables, executable, 0))
             except Exception as e :
                 print("[Error] Got Exception in : ", executable)

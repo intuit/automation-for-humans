@@ -1,5 +1,5 @@
 {
-    "execution-mode": "serial",
+    "execution-mode": "parallel",
     "runnables": [
         "suites/public-sites.json"
     ]

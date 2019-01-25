@@ -6,18 +6,15 @@ from constants import *
 from config import *
 
 desiredCapabilities = {
-    'platform': 'Mac',
-    'commandDelay': 50,
-    'loopDelay': 1000,
-    'mouseMoveSpeed': 50,
-    'screenShotOnError': 1
+    "debugConnectToRunningApp": "false",
+    "app": ""
 }
 
-APPIUM_URL = "http://localhost:4622/wd/hub"
+APPIUM_URL = "http://localhost:9999"
 
 def find_element(driver, command) :
     timeout_seconds = config["action-small-timeout-seconds"]
-    mode = "XPATH"
+    mode = command[ARGS][ATTRIBUTE]
     xpath = command[ARGS][SUBJECT]
 
     if command[TYPE] == WAIT_UNTIL_ACTION :
@@ -28,8 +25,11 @@ def find_element(driver, command) :
     return (element, mode, xpath)
 
 def init_driver(program, arguments) :
+    global desiredCapabilities
+    desiredCapabilities['app'] = program[COMMANDS][0][ARGS][SUBJECT];
     driver = webdriver.Remote(command_executor=APPIUM_URL, desired_capabilities=desiredCapabilities)
     return driver
 
 def init_app(driver, program, arguments) :
-    driver.get(program[COMMANDS][0][ARGS][SUBJECT])
+    # For windows we don't have to do anything as the init_driver will launch the app.
+    pass

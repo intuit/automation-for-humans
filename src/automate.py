@@ -6,6 +6,7 @@ from constants import *
 # Platforms
 import web
 import mac
+import win
 
 import os
 import json
@@ -22,6 +23,8 @@ def set_platform(plat) :
         platform = web
     elif plat == "mac" :
         platform = mac
+    elif plat == "win" :
+        platform = win
     else :
         raise Exception("[Error] Unsupported platform")
 
@@ -74,7 +77,7 @@ def run_executable(executable, arguments) :
 
     # The 0th command has to be open!
     if program[COMMANDS][0][TYPE] == OPEN_ACTION :
-        driver = platform.init_driver()
+        driver = platform.init_driver(program, arguments)
         platform.init_app(driver, program, arguments)
 
         # Initialising the stuff required for recordings

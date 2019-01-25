@@ -15,7 +15,7 @@ from multiprocessing import Process
 import subprocess
 import slackbot
 
-platform = web
+platform = None
 
 def set_platform(plat) :
     global platform
@@ -110,9 +110,13 @@ def get_suites() :
         return suites
 
 def get_executables(runnable) :
-    with open(runnable, "r") as runnable_file :
-        executables = json.load(runnable_file)
-        return executables
+    try:
+        with open(runnable, "r") as runnable_file :
+            executables = json.load(runnable_file)
+            return executables
+    except Exception : # parent of IOError, OSError *and* WindowsError where available
+        print("Got exception while reading file : ", runnable)
+        sys.exit(1)
 
 def recording_init(suite_name) :
     recordings_dir_name = RECORDINGS_DIR
@@ -142,6 +146,10 @@ def run_parallel(runnables, arguments) :
     results = []
     for runnable in runnables :
         executables = get_executables(runnable)
+        if executables[PLATFORM] == None :
+            print("Platform is None")
+            sys.exit(1)
+        print ("Found Platform", executables[PLATFORM])
         set_platform(executables[PLATFORM])
         for executable in executables[EXECUTABLES] :
             print("[LOG] Running Executable : ", executable)

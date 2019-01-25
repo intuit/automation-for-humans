@@ -15,7 +15,7 @@ from multiprocessing import Process
 import subprocess
 import slackbot
 
-platform = None
+platform = web
 
 def set_platform(plat) :
     global platform

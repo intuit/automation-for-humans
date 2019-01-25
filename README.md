@@ -196,6 +196,13 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
                 width="100"
             />
         </td>
+        <td>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Appveyor_logo.svg/220px-Appveyor_logo.svg.png"
+                height="100"
+                width="100"
+            />
+        </td>
     </tr>
     <tr>
         <td>
@@ -205,7 +212,12 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
         </td>
         <td>
             <a href="./.travis.yml">
-                .travis.yml
+                .travis.yml <br />(For Mac)
+            </a>
+        </td>
+        <td>
+            <a href="./.appveyor.yml">
+                .appveyor.yml <br />(For Windows)
             </a>
         </td>
     </tr>

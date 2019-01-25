@@ -2,6 +2,7 @@
 import parse
 import common
 from constants import *
+import sys
 
 # Platforms
 import web
@@ -45,7 +46,9 @@ def execute_command(driver, command) :
     # We are returning mode to save it into the lock file.
     return mode
 
-def run_executable(executable, arguments) :
+def run_executable(executable, arguments, plat) :
+    set_platform(plat)
+
     # There might be different places from where we m ight consume the instructions to execute.
     if executable[TYPE] == "file" :
         input_file = executable[LOCATION]
@@ -110,9 +113,13 @@ def get_suites() :
         return suites
 
 def get_executables(runnable) :
-    with open(runnable, "r") as runnable_file :
-        executables = json.load(runnable_file)
-        return executables
+    try:
+        with open(runnable, "r") as runnable_file :
+            executables = json.load(runnable_file)
+            return executables
+    except Exception : # parent of IOError, OSError *and* WindowsError where available
+        print("[Error] Got exception while reading file : ", runnable)
+        sys.exit(1)
 
 def recording_init(suite_name) :
     recordings_dir_name = RECORDINGS_DIR
@@ -145,7 +152,7 @@ def run_parallel(runnables, arguments) :
         set_platform(executables[PLATFORM])
         for executable in executables[EXECUTABLES] :
             print("[LOG] Running Executable : ", executable)
-            p = Process(target=run_executable, args=(executable, arguments))
+            p = Process(target=run_executable, args=(executable, arguments, executables[PLATFORM]))
             jobs.append((p, executable, runnable))
             p.start()
     for proc, executable, runnable in jobs :
@@ -160,7 +167,7 @@ def run_serial(runnables, arguments) :
         set_platform(executables[PLATFORM])
         for executable in executables[EXECUTABLES] :
             try :
-                run_executable(executable, arguments)
+                run_executable(executable, arguments, executables[PLATFORM])
                 results.append((executables, executable, 0))
             except Exception as e :
                 print("[Error] Got Exception in : ", executable)

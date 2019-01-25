@@ -151,6 +151,7 @@ def run_parallel(runnables, arguments) :
             sys.exit(1)
         print ("Found Platform", executables[PLATFORM])
         set_platform(executables[PLATFORM])
+        sys.stdout.flush()
         for executable in executables[EXECUTABLES] :
             print("[LOG] Running Executable : ", executable)
             p = Process(target=run_executable, args=(executable, arguments))

@@ -11,6 +11,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 def find_element(driver, timeout_seconds, mode, xpath) :
     if mode == "NAME" :
         return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.NAME, xpath)))
+    elif mode == "ID" :
+        return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.ID, xpath)))
+    elif mode == "CLASS_NAME" :
+        return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.CLASS_NAME, xpath)))
     else :
         return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.XPATH, xpath)))
 

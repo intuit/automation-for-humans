@@ -46,10 +46,43 @@ def execute_command(driver, command) :
     # We are returning mode to save it into the lock file.
     return mode
 
-def run_executable(executable, arguments, plat) :
-    set_platform(plat)
+def saved_locked_program(input_file, locked_program) :
+    # If we had not read the commands from a lock file, we will generate one now.
+    if LOCK not in input_file :
+        with open(input_file + LOCK, "w") as lock_file :
+            json.dump(locked_program, lock_file, indent=4)
 
-    # There might be different places from where we m ight consume the instructions to execute.
+def run_program(program, platform, arguments, recording_name, init_command_number=1, driver=None) :
+    locked_program = program
+
+    command_number = init_command_number # Lol we start our execution from index=1, wasted one hour changing this from 0 to 1
+
+    # The 0th command has to be open!
+    if program[COMMANDS][0][TYPE] == OPEN_ACTION :
+        if driver == None :
+            driver = platform.init_driver(program, arguments)
+            platform.init_app(driver, program, arguments)
+
+        # Initialising the stuff required for recordings
+        screenshot_folder = recording_init(recording_name)
+
+        # Now its time to execute the automation.
+        for command in program[COMMANDS][1:] :
+
+            print("[LOG] Executing Command : ", command)
+            # Before executing every command take a screenshot
+            screenshot_file_name = screenshot_folder + "/" + format(command_number, '05d') + ".png"
+            driver.save_screenshot(screenshot_file_name)
+
+            mode = execute_command(driver, command)
+            locked_program[COMMANDS][command_number][MODE] = mode
+            command_number += 1
+    else :
+        raise Exception("[Error] Program Error! Open not specified!")
+    return locked_program, driver
+
+def parse_executable(executable) :
+    # There might be different places from where we might consume the instructions to execute.
     if executable[TYPE] == "file" :
         input_file = executable[LOCATION]
         output_file = input_file.replace(TXT, JSON)
@@ -74,37 +107,24 @@ def run_executable(executable, arguments, plat) :
     # Parse the JSON file.
     program = parse.parse_input(input_file)
 
-    locked_program = program
+    return input_file, program
 
-    command_number = 1 # Lol we start our execution from index=1, wasted one hour changing this from 0 to 1
+def run_executable(executable, arguments, plat, driver=None, top_level=True) :
+    if "setup" in executable :
+        driver = run_executable(executable["setup"], arguments, plat, driver, False)
 
-    # The 0th command has to be open!
-    if program[COMMANDS][0][TYPE] == OPEN_ACTION :
-        driver = platform.init_driver(program, arguments)
-        platform.init_app(driver, program, arguments)
+    set_platform(plat)
 
-        # Initialising the stuff required for recordings
-        screenshot_folder = recording_init(executable[NAME])
+    input_file, program = parse_executable(executable)
 
-        # Now its time to execute the automation.
-        for command in program[COMMANDS][1:] :
+    locked_program, driver = run_program(program, platform, arguments, executable["name"], 1, driver)
 
-            print("[LOG] Executing Command : ", command)
-            # Before executing every command take a screenshot
-            screenshot_file_name = screenshot_folder + "/" + format(command_number, '05d') + ".png"
-            driver.save_screenshot(screenshot_file_name)
+    saved_locked_program(input_file, locked_program)
 
-            mode = execute_command(driver, command)
-            locked_program[COMMANDS][command_number][MODE] = mode
-            command_number += 1
+    if top_level and plat == "web" :
         driver.close()
-    else :
-        raise Exception("[Error] Program Error! Open not specified!")
 
-    # If we had not read the commands from a lock file, we will generate one now.
-    if LOCK not in input_file :
-        with open(input_file + LOCK, "w") as lock_file :
-            json.dump(locked_program, lock_file, indent=4)
+    return driver
 
 def get_suites() :
     path_to_run_json = RUN_JSON

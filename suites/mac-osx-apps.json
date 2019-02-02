@@ -3,6 +3,11 @@
     "platform": "mac",
     "executables": [
         {
+            "setup" : {
+                "type": "file",
+                "location": "sample-inputs/mac-osx-apps/calculator-launch.txt",
+                "name": "calculator-launch"
+            },
             "name": "calculator",
             "type": "file",
             "location": "sample-inputs/mac-osx-apps/calculator.txt"

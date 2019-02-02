@@ -1,0 +1,18 @@
+{
+    "commands": [
+        {
+            "args": {
+                "subject": "calculator"
+            },
+            "type": "open"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:92']"
+            },
+            "type": "click"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "commands": [
+        {
+            "args": {
+                "subject": "calculator"
+            }, 
+            "type": "open"
+        }, 
+        {
+            "args": {
+                "attribute": "", 
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:92']", 
+                "index": ""
+            }, 
+            "type": "click", 
+            "mode": "XPATH"
+        }, 
+        {
+            "args": {
+                "attribute": "", 
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:466']", 
+                "index": ""
+            }, 
+            "type": "click", 
+            "mode": "XPATH"
+        }, 
+        {
+            "args": {
+                "attribute": "", 
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:112']", 
+                "index": ""
+            }, 
+            "type": "click", 
+            "mode": "XPATH"
+        }, 
+        {
+            "args": {
+                "attribute": "", 
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXWindow[@AXIdentifier='_NS:477' and @AXSubrole='AXStandardWindow']/AXGroup[@AXIdentifier='_NS:444']/AXButton[@AXIdentifier='_NS:447']", 
+                "index": ""
+            }, 
+            "type": "click", 
+            "mode": "XPATH"
+        }
+    ]
+}

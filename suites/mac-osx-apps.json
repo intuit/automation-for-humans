@@ -3,7 +3,17 @@
     "platform": "mac",
     "executables": [
         {
-            "name": "calculator",
+            "setup" : {
+                "type": "file",
+                "location": "sample-inputs/mac-osx-apps/calculator-launch.txt",
+                "name": "calculator-launch"
+            },
+            "tear-down" : {
+                "type": "file",
+                "location": "sample-inputs/mac-osx-apps/calculator-exit.txt",
+                "name": "calculator-exit"
+            },
+            "name": "calculator-calculations",
             "type": "file",
             "location": "sample-inputs/mac-osx-apps/calculator.txt"
         }

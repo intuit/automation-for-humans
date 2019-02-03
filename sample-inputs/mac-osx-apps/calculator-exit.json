@@ -1,0 +1,26 @@
+{
+    "commands": [
+        {
+            "args": {
+                "subject": "calculator"
+            },
+            "type": "open"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXMenuBar[0]/AXMenuBarItem[@AXTitle='Calculator']"
+            },
+            "type": "click"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "/AXApplication[@AXTitle='Calculator']/AXMenuBar[0]/AXMenuBarItem[@AXTitle='Calculator']/AXMenu[0]/AXMenuItem[@AXTitle='Quit Calculator']"
+            },
+            "type": "click"
+        }
+    ]
+}

@@ -121,6 +121,9 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True) :
 
     saved_locked_program(input_file, locked_program)
 
+    if "tear-down" in executable :
+        driver = run_executable(executable["tear-down"], arguments, plat, driver, False)
+
     if top_level and plat == "web" :
         driver.close()
 

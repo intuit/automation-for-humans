@@ -1,0 +1,3 @@
+open "calculator"
+click on "/AXApplication[@AXTitle='Calculator']/AXMenuBar[0]/AXMenuBarItem[@AXTitle='Calculator']"
+click on "/AXApplication[@AXTitle='Calculator']/AXMenuBar[0]/AXMenuBarItem[@AXTitle='Calculator']/AXMenu[0]/AXMenuItem[@AXTitle='Quit Calculator']"

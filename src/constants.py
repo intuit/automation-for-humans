@@ -1,6 +1,7 @@
 ARGUMENTS_FILE = "arguments.txt"
 RECORDINGS_DIR = "recordings"
 RUN_JSON = "suites/run.json"
+PERFORMANCE_DIR = "performance"
 
 # Parse command
 parse_command = ["dsl/bin/afh-parser"]

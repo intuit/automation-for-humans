@@ -56,6 +56,7 @@ def run_program(program, platform, arguments, recording_name, init_command_numbe
     locked_program = program
 
     command_number = init_command_number # Lol we start our execution from index=1, wasted one hour changing this from 0 to 1
+    performance = []
 
     # The 0th command has to be open!
     if program[COMMANDS][0][TYPE] == OPEN_ACTION :
@@ -74,12 +75,21 @@ def run_program(program, platform, arguments, recording_name, init_command_numbe
             screenshot_file_name = screenshot_folder + "/" + format(command_number, '05d') + ".png"
             driver.save_screenshot(screenshot_file_name)
 
+            # Used to measure performance
+            start_time = time.time()
+
             mode = execute_command(driver, command)
+
+            # Used to measure performance
+            end_time = time.time()
+
+            performance.append(end_time-start_time)
+
             locked_program[COMMANDS][command_number][MODE] = mode
             command_number += 1
     else :
         raise Exception("[Error] Program Error! Open not specified!")
-    return locked_program, driver
+    return locked_program, driver, performance
 
 def parse_executable(executable) :
     # There might be different places from where we might consume the instructions to execute.
@@ -110,24 +120,46 @@ def parse_executable(executable) :
     return input_file, program
 
 def run_executable(executable, arguments, plat, driver=None, top_level=True) :
+    performance_setup = []
+    performance_main = []
+    performance_tear_down = []
     if "setup" in executable :
-        driver = run_executable(executable["setup"], arguments, plat, driver, False)
+        driver, performance_setup = run_executable(executable["setup"], arguments, plat, driver, False)
 
     set_platform(plat)
 
     input_file, program = parse_executable(executable)
 
-    locked_program, driver = run_program(program, platform, arguments, executable["name"], 1, driver)
+    locked_program, driver, performance_main = run_program(program, platform, arguments, executable["name"], 1, driver)
 
     saved_locked_program(input_file, locked_program)
 
     if "tear-down" in executable :
-        driver = run_executable(executable["tear-down"], arguments, plat, driver, False)
+        driver, performance_tear_down = run_executable(executable["tear-down"], arguments, plat, driver, False)
 
     if top_level and plat == "web" :
         driver.close()
 
-    return driver
+    # Its better that each process writes its own performance numbers.
+    # Otherwise each process will have to send the data to the parent process. What a pain!
+    performance_data = {
+        "setup": sum(performance_setup),
+        "main": sum(performance_main),
+        "tear-down": sum(performance_tear_down),
+        "details": {
+            "setup": performance_setup,
+            "main": performance_main,
+            "tear-down": performance_tear_down
+        }
+    }
+
+    # Time to write this to a file.
+    perf_file_name = PERFORMANCE_DIR + "/" + executable["name"] + ".json"
+    if not os.path.isdir(PERFORMANCE_DIR) :
+        os.mkdir(PERFORMANCE_DIR)
+    with open(perf_file_name, "w") as perf_file :
+        json.dump(performance_data, perf_file, indent=4)
+    return driver, performance_setup + performance_main + performance_tear_down
 
 def get_suites() :
     path_to_run_json = RUN_JSON

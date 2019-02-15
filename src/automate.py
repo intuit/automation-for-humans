@@ -2,6 +2,7 @@
 import parse
 import common
 from constants import *
+import performance
 import sys
 
 # Platforms
@@ -154,9 +155,9 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True) :
     }
 
     # Time to write this to a file.
-    perf_file_name = PERFORMANCE_DIR + "/" + executable["name"] + ".json"
-    if not os.path.isdir(PERFORMANCE_DIR) :
-        os.mkdir(PERFORMANCE_DIR)
+    perf_file_name = PERFORMANCE_TEMP_DIR + "/" + executable["name"] + ".json"
+    if not os.path.isdir(PERFORMANCE_TEMP_DIR) :
+        os.mkdir(PERFORMANCE_TEMP_DIR)
     with open(perf_file_name, "w") as perf_file :
         json.dump(performance_data, perf_file, indent=4)
     return driver, performance_setup + performance_main + performance_tear_down
@@ -247,6 +248,8 @@ if __name__ == "__main__" :
 
     # If there is a slack channel mentioned in the suite we post the results to slack.
     slackbot.post_results_to_slack(results)
+
+    performance.log_performance()
 
     exit_status = True
     for runnable, executable, result in results :

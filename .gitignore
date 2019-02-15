@@ -1,7 +1,8 @@
 *.pyc
 .DS_Store
 recordings/
-performance/
+performance-temp/
+performance-report.md
 git-upload/
 __pycache__/
 *~

@@ -68,9 +68,9 @@
         },
         {
             "args": {
-                "attribute": "",
+                "attribute": "href",
                 "index": "",
-                "subject": "Labels"
+                "subject": "/intuit/karate/labels"
             },
             "type": "click"
         },
@@ -84,9 +84,9 @@
         },
         {
             "args": {
-                "attribute": "",
+                "attribute": "href",
                 "index": "",
-                "subject": "Milestones"
+                "subject": "/intuit/karate/milestones"
             },
             "type": "assert"
         },

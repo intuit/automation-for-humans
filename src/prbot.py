@@ -19,6 +19,7 @@ def comment_on_pr(body) :
     try :
         PR_NUMBER = os.environ["CIRCLE_PULL_REQUEST"].split("/")[6]
     except :
+        print("[LOG] Skipping. Not a Pull Request")
         return
 
     github_url = GITHUB_API_ENDPOINT + "/repos" + "/" + ORG_NAME + "/" + REPO_NAME + "/issues/" + PR_NUMBER + "/comments"

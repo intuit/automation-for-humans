@@ -8,7 +8,7 @@ from constants import *
 # This function is generic but only works with CircleCI :p
 # TODO: Make this generic so that it works with all the 3 CI enviornments.
 def comment_on_pr(body) :
-    GITHUB_API_ENDPOINT = "https://github.com/api/v3"
+    GITHUB_API_ENDPOINT = "https://api.github.com"
     AUTH_HEADER = {}
     AUTH_HEADER["Authorization"] = "token " + os.environ["GITHUB_PERSONAL_TOKEN"]
 

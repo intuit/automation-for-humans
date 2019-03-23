@@ -75,12 +75,12 @@
         }, 
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "Labels", 
+                "attribute": "href", 
+                "subject": "/intuit/karate/labels", 
                 "index": ""
             }, 
             "type": "click", 
-            "mode": "XPATH"
+            "mode": "ATTRIBUTE"
         }, 
         {
             "args": {
@@ -93,12 +93,12 @@
         }, 
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "Milestones", 
+                "attribute": "href", 
+                "subject": "/intuit/karate/milestones", 
                 "index": ""
             }, 
             "type": "assert", 
-            "mode": "XPATH"
+            "mode": "ATTRIBUTE"
         }, 
         {
             "args": {

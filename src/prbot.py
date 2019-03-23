@@ -27,7 +27,9 @@ def comment_on_pr(body) :
     content["body"] = body
 
     # Making the API call.
+    print("[LOG] Making the PR comment API call")
     r = requests.post(github_url, data=json.dumps(content), headers=AUTH_HEADER)
+    print(r)
 
 if __name__ == "__main__" :
     # Open's the performance file and comment on the PR

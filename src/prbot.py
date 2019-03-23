@@ -3,6 +3,8 @@ import os
 import sys
 import requests
 
+from constants import *
+
 # This function is generic but only works with CircleCI :p
 # TODO: Make this generic so that it works with all the 3 CI enviornments.
 def comment_on_pr(body) :

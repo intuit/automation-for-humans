@@ -8,19 +8,20 @@ def compare_perf() :
     performance_drop_files = []
     files = os.listdir(PERFORMANCE_TEMP_DIR)
     for file in files :
-        with open(PERFORMANCE_TEMP_DIR + "/" + file, "r") as perf_to_file :
-            if os.path.isfile(PERFORMANCE_DIR + "/" + file)  :
-                with open(PERFORMANCE_DIR + "/" + file, "r") as perf_from_file :
-                    from_data = json.load(perf_from_file)
-                    to_data = json.load(perf_to_file)
-                    percent_change = 100.0*((to_data["main"]-from_data["main"])/from_data["main"])
-                    if abs(percent_change) > PERCENTAGE_PERFORMANCE_DROP_THRESHOLD :
-                        performance_drop_files.append({
-                            "file": file,
-                            "from-value": from_data["main"],
-                            "to-value": to_data["main"],
-                            "percent-change": percent_change
-                        })
+        if os.path.isfile(PERFORMANCE_TEMP_DIR + "/" + file) :
+            with open(PERFORMANCE_TEMP_DIR + "/" + file, "r") as perf_to_file :
+                if os.path.isfile(PERFORMANCE_DIR + "/" + file)  :
+                    with open(PERFORMANCE_DIR + "/" + file, "r") as perf_from_file :
+                        from_data = json.load(perf_from_file)
+                        to_data = json.load(perf_to_file)
+                        percent_change = 100.0*((to_data["main"]-from_data["main"])/from_data["main"])
+                        if abs(percent_change) > PERCENTAGE_PERFORMANCE_DROP_THRESHOLD :
+                            performance_drop_files.append({
+                                "file": file,
+                                "from-value": from_data["main"],
+                                "to-value": to_data["main"],
+                                "percent-change": percent_change
+                            })
     return performance_drop_files
 
 # Template for showing the diff.

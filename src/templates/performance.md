@@ -1,4 +1,4 @@
-# [PerfCov]() Report
+# [PerfCov](https://github.com/intuit/automation-for-humans/blob/master/PerfCov.md) Report
 
 > The max. diff. in performance is `{percent_diff}%`.
 
@@ -20,7 +20,7 @@
 </table>
 
 
-[What is PerfCov ?]()
-> **Legend** - [Click here to learn more]()
+[What is PerfCov ?](https://github.com/intuit/automation-for-humans/blob/master/PerfCov.md)
+> **Legend** - [Click here to learn more](https://github.com/intuit/automation-for-humans/blob/master/PerfCov.md)
 > `Δ = absolute <relative> (impact)`, `ø = not affected`, `? = missing data`
-> Powered by [PerfCov]().
+> Powered by [PerfCov](https://github.com/intuit/automation-for-humans/blob/master/PerfCov.md).

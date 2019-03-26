@@ -66,7 +66,6 @@ The top level keys(`setup`, `main`, `tear-down`) provide the total time time in 
 > `Δ = absolute <relative> (impact)`, `ø = not affected`, `? = missing data`
 > Powered by [PerfCov](https://github.com/intuit/automation-for-humans/blob/master/PerfCov.md).
 
-
 [PerfCov]: https://github.com/intuit/automation-for-humans/blob/master/PerfCov.md
 [CircleCI]: https://circleci.com/
 [TravisCI]: https://travis-ci.org/

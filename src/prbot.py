@@ -21,7 +21,7 @@ def comment_on_pr(body, api_end_point = "https://api.github.com") :
         print("[LOG] Skipping. Not a Pull Request")
         return
 
-    github_url = GITHUB_API_ENDPOINT + "/repos" + "/" + ORG_NAME + "/" + REPO_NAME + "/issues/" + PR_NUMBER + "/comments"
+    github_url = api_end_point + "/repos" + "/" + ORG_NAME + "/" + REPO_NAME + "/issues/" + PR_NUMBER + "/comments"
     content = {}
     content["body"] = body
 
@@ -31,7 +31,7 @@ def comment_on_pr(body, api_end_point = "https://api.github.com") :
     print(r)
 
 if __name__ == "__main__" :
-    try :
+    if os.path.isfile(PERFORMANCE_REPORT) :
         # Open's the performance file and comment on the PR
         with open(PERFORMANCE_REPORT, "r") as perf_report_file :
             body = perf_report_file.read()
@@ -41,5 +41,5 @@ if __name__ == "__main__" :
                 comment_on_pr(body, sys.argv[1])
             else :
                 comment_on_pr(body)
-    except Exception :
+    else :
         print("[LOG] Could not find performance file. Exiting.")

@@ -5,7 +5,7 @@
 ![circle-ci](https://img.shields.io/circleci/project/github/intuit/text-provider/master.svg?style=flat-square&logo=circleci) [![Build Status](https://travis-ci.org/intuit/automation-for-humans.svg?branch=master)](https://travis-ci.org/intuit/automation-for-humans) [![Build status](https://ci.appveyor.com/api/projects/status/yyhxgakhdijtir54/branch/master?svg=true)](https://ci.appveyor.com/project/MadaraUchiha-314/automation-for-humans/branch/master)
  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/87d7131d090e4e6db3a99f823a923e19)](https://www.codacy.com/app/rohithr31/automation-for-humans?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=intuit/automation-for-humans&amp;utm_campaign=Badge_Grade) 
 
-Converts english statements to Selenium Automation.
+Converts English statements to Selenium Automation.
 
 ## Architecture
 
@@ -83,7 +83,7 @@ python3 src/automate.py
     </tr>
     <tr>
         <td><a href="#english-keywords"><code>wait</code></a></td>
-        <td>Wait's for a particular amount of time in seconds</td>
+        <td>Waits for a particular amount of time in seconds</td>
         <td>
             <a href="#english-keywords"><code>wait for "10"</code>
         </td>
@@ -111,10 +111,10 @@ python3 src/automate.py
     </tr>
 </table>
 
-That's all! We currently support only a minimum set of keywords and intend to keep to it that way. There are some advanced-searching that you can do with the same keywords, explained in <a href="#advanced-keywords-use">advanced-keywords-use</a>.
+That's all! We currently support only a minimum set of keywords and intend to keep to it that way. There is some advanced-searching that you can do with the same keywords, explained in <a href="#advanced-keywords-use">advanced-keywords-use</a>.
 
 ### Core Philosophy
-The core philosophy of [automation-for-humans] is that the automation tests should mimic the user's behavior. Then we ask ourselves the question, what all things can a user do while they are interacting with the UI that we have built. The most common actions that a user does is <a href="#english-keywords"><code>click</code></a>, <a href="#english-keywords"><code>type</code></a>, <a href="#english-keywords"><code>hover</code></a>. More complex actions include <a href="#english-keywords"><code>drag-and-drop</code></a>, <a href="#english-keywords"><code>click-and-drag</code></a> etc. Supporting the complex actions would involve and non-trival pixel math which [automation-for-humans] does not plan to support in the initial phase.
+The core philosophy of [automation-for-humans] is that the automation tests should mimic the user's behavior. Then we ask ourselves the question, what all things can a user do while they are interacting with the UI that we have built. The most common actions that a user does is <a href="#english-keywords"><code>click</code></a>, <a href="#english-keywords"><code>type</code></a>, <a href="#english-keywords"><code>hover</code></a>. More complex actions include <a href="#english-keywords"><code>drag-and-drop</code></a>, <a href="#english-keywords"><code>click-and-drag</code></a> etc. Supporting the complex actions would involve and non-trivial pixel math which [automation-for-humans] does not plan to support in the initial phase.
 
 Another aspect core to [automation-for-humans] is that it does not store [XPath]'s and use it as an identifier while running the tests. Instead [automation-for-humans] stores only the text, which is how the user sees and interacts with the page.
 
@@ -225,7 +225,7 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
 </table>
 
 ## Advanced Keywords Use
-Sometimes one has no choice but to use the `id`'s, `class`, `automation-id` attributes to identify elements on the web-page. For such edge-cases and to provide completeness to the testing framework, [automation-for-humans] exposes an additional feature with most of keywords.
+Sometimes one has no choice but to use the `id`'s, `class`, `automation-id` attributes to identify elements on the web-page. For such edge-cases, and to provide completeness to the testing framework, [automation-for-humans] exposes an additional feature with most keywords.
 
 <table>
     <tr>
@@ -266,7 +266,7 @@ Sometimes one has no choice but to use the `id`'s, `class`, `automation-id` attr
 <b>One can search for an element with any attribute using the above syntax.</b>
 
 ### Resolving ambiguity
-If multiple elements exists on the page that look alike(text-wise) then there is ambiguity by specifying the order in which they appear. Defaults to the 1st element that appears if nothing is specified.
+If multiple elements exist on the page that look alike(text-wise) then there is ambiguity by specifying the order in which they appear. Defaults to the 1st element that appears if nothing is specified.
 
 <table>
     <tr>
@@ -323,10 +323,10 @@ To records, first start [Appium For Mac]. Then in the terminal execute :
 python3 src/action-recorder-mac.py <app-name> <output-file-path>
 ```
 
-Press `Ctrl + C` to terminalte the script from recording.
+Press `Ctrl + C` to terminate the script from recording.
 
 This will produce a file with all the commands that you have executed in a way that [automation-for-humans] understands. For readability,
-the script also add in a comment before each line (starting with `#`) which attempts to be the english version of the same command.
+the script also adds in a comment before each line (starting with `#`) which attempts to be the English version of the same command.
 
 [automation-for-humans]: https://github.com/intuit/automation-for-humans
 [XPath]: https://en.wikipedia.org/wiki/XPath

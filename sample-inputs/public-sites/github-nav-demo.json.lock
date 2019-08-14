@@ -3,110 +3,110 @@
         {
             "args": {
                 "subject": "https://github.com/"
-            }, 
+            },
             "type": "open"
-        }, 
+        },
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "Pick a username", 
-                "input": "afh-random-user", 
-                "index": ""
-            }, 
-            "type": "type", 
+                "attribute": "placeholder",
+                "index": "",
+                "input": "afh-random-user",
+                "subject": "Pick a username"
+            },
+            "type": "type",
             "mode": "PLACEHOLDER"
-        }, 
+        },
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "you@example.com", 
-                "input": "afh_random_user@afh.com", 
-                "index": ""
-            }, 
-            "type": "type", 
+                "attribute": "placeholder",
+                "index": "",
+                "input": "afh_random_user@afh.com",
+                "subject": "Your email address"
+            },
+            "type": "type",
             "mode": "PLACEHOLDER"
-        }, 
+        },
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "Create a password", 
-                "input": "afh_random_password", 
-                "index": ""
-            }, 
-            "type": "type", 
+                "attribute": "placeholder",
+                "index": "",
+                "input": "afh_random_password",
+                "subject": "Create a password"
+            },
+            "type": "type",
             "mode": "PLACEHOLDER"
-        }, 
+        },
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "Search GitHub", 
-                "input": "karate", 
-                "index": ""
-            }, 
-            "type": "type", 
+                "attribute": "placeholder",
+                "index": "",
+                "input": "karate",
+                "subject": "Search GitHub"
+            },
+            "type": "type",
             "mode": "PLACEHOLDER"
-        }, 
+        },
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "karate", 
-                "index": ""
-            }, 
-            "type": "click", 
+                "attribute": "placeholder",
+                "index": "",
+                "subject": "karate"
+            },
+            "type": "click",
             "mode": "XPATH"
-        }, 
+        },
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "karate", 
-                "index": ""
-            }, 
-            "type": "click", 
+                "attribute": "placeholder",
+                "index": "",
+                "subject": "karate"
+            },
+            "type": "click",
             "mode": "XPATH"
-        }, 
+        },
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "Issues", 
-                "index": ""
-            }, 
-            "type": "click", 
+                "attribute": "placeholder",
+                "index": "",
+                "subject": "Issues"
+            },
+            "type": "click",
             "mode": "XPATH"
-        }, 
+        },
         {
             "args": {
-                "attribute": "href", 
-                "subject": "/intuit/karate/labels", 
-                "index": ""
-            }, 
-            "type": "click", 
+                "attribute": "href",
+                "index": "",
+                "subject": "/intuit/karate/labels"
+            },
+            "type": "click",
             "mode": "ATTRIBUTE"
-        }, 
+        },
         {
             "args": {
-                "attribute": "placeholder", 
-                "subject": "bug", 
-                "index": ""
-            }, 
-            "type": "click", 
+                "attribute": "placeholder",
+                "index": "",
+                "subject": "bug"
+            },
+            "type": "click",
             "mode": "XPATH"
-        }, 
+        },
         {
             "args": {
-                "attribute": "href", 
-                "subject": "/intuit/karate/milestones", 
-                "index": ""
-            }, 
-            "type": "assert", 
+                "attribute": "href",
+                "index": "",
+                "subject": "/intuit/karate/milestones"
+            },
+            "type": "assert",
             "mode": "ATTRIBUTE"
-        }, 
+        },
         {
             "args": {
-                "attribute": "href", 
-                "subject": "/intuit/karate", 
-                "index": ""
-            }, 
-            "type": "assert", 
+                "attribute": "href",
+                "index": "",
+                "subject": "/intuit/karate"
+            },
+            "type": "assert",
             "mode": "ATTRIBUTE"
         }
     ]

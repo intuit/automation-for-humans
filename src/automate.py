@@ -139,7 +139,7 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True) :
         driver, performance_tear_down = run_executable(executable["tear-down"], arguments, plat, driver, False)
 
     if top_level and plat == "web" :
-        driver.close()
+        driver.quit()
 
     # Its better that each process writes its own performance numbers.
     # Otherwise each process will have to send the data to the parent process. What a pain!

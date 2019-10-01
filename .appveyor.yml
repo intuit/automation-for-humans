@@ -24,5 +24,4 @@ before_test:
 
 # to run your custom scripts instead of automatic tests
 test_script:
-  - python src/automate.py
-  - exit 0
+  - win_runtests.cmd

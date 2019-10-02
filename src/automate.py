@@ -200,20 +200,28 @@ def get_arguments() :
             return return_dict
     return return_dict
 
-def run_parallel(runnables, arguments) :
+def run_parallel(runnables, arguments, parallelism) :
     jobs = []
     results = []
     for runnable in runnables :
         executables = get_executables(runnable)
         set_platform(executables[PLATFORM])
         for executable in executables[EXECUTABLES] :
-            print("[LOG] Running Executable : ", executable)
             p = Process(target=run_executable, args=(executable, arguments, executables[PLATFORM]))
             jobs.append((p, executable, runnable))
+
+    n_jobs = len(jobs)
+    parallelism = n_jobs if parallelism < 1 else min(parallelism, n_jobs)
+
+    for jobs_batch_index in range(0, n_jobs, parallelism):
+        jobs_batch = jobs[jobs_batch_index:jobs_batch_index + parallelism]
+        for job in jobs_batch:
+            p, executable, runnable = job
+            print("[LOG] Running Executable : ", executable)
             p.start()
-    for proc, executable, runnable in jobs :
-        proc.join()
-        results.append((executables, executable, proc.exitcode))
+        for proc, executable, runnable in jobs_batch:
+            proc.join()
+            results.append((executables, executable, proc.exitcode))
     return results
 
 def run_serial(runnables, arguments) :
@@ -242,7 +250,9 @@ if __name__ == "__main__" :
     results = []
 
     if suites[EXECUTION_MODE] == "parallel" :
-        results = run_parallel(runnables, arguments)
+        parallelism = suites.get("parallelism", -1)
+        parallelism = int(parallelism)
+        results = run_parallel(runnables, arguments, parallelism)
     else :
         results = run_serial(runnables, arguments)
 

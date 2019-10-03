@@ -7,7 +7,7 @@ PERFORMANCE_TEMPLATE = "src/templates/performance.md"
 PERFORMANCE_REPORT = "performance-report.md"
 
 # Parse command
-parse_command = ["dsl/bin/afh-parser"]
+parse_command = "dsl/bin/afh-parser"
 
 # Different types of actions
 CLICK_ACTION = "click"

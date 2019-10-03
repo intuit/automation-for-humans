@@ -61,7 +61,7 @@ def run_program(program, platform, arguments, recording_name, init_command_numbe
 
     # The 0th command has to be open!
     if program[COMMANDS][0][TYPE] == OPEN_ACTION :
-        if driver == None :
+        if driver is None :
             driver = platform.init_driver(program, arguments)
             platform.init_app(driver, program, arguments)
 
@@ -105,7 +105,7 @@ def parse_executable(executable) :
     # output_file : File with JSON format.
 
     # Yo! New Parser on the block.
-    parse_exit_code = subprocess.call(parse_command + [input_file, output_file])
+    parse_exit_code = subprocess.call([parse_command, input_file, output_file])
     if parse_exit_code != 0 :
         raise Exception("[Error] Parse Error")
 
@@ -174,8 +174,7 @@ def get_executables(runnable) :
             executables = json.load(runnable_file)
             return executables
     except Exception : # parent of IOError, OSError *and* WindowsError where available
-        print("[Error] Got exception while reading file : ", runnable)
-        sys.exit(1)
+        sys.exit("[Error] Got exception while reading file : " + runnable)
 
 def recording_init(suite_name) :
     recordings_dir_name = RECORDINGS_DIR
@@ -239,8 +238,6 @@ if __name__ == "__main__" :
     # Get the arguments from the file.
     arguments = get_arguments()
 
-    results = []
-
     if suites[EXECUTION_MODE] == "parallel" :
         results = run_parallel(runnables, arguments)
     else :
@@ -257,8 +254,7 @@ if __name__ == "__main__" :
             print ("[Error] Error in : ", executable[NAME])
             exit_status = False
     if not exit_status :
-        print ("[Error] Exiting!")
-        exit(1)
-    else :
-        print ("[LOG] Success!")
-        exit(0)
+        sys.exit("[Error] Exiting!")
+
+    print ("[LOG] Success!")
+    sys.exit(0)

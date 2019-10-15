@@ -41,6 +41,17 @@ LOCATION = "location"
 EXECUTION_MODE = "execution-mode"
 RUNNABLES = "runnables"
 
+#Report generation constants
+PASSED = "passed"
+FAILED = "failed"
+SKIPPED = "skipped"
+NAME = "name"
+RESULT = "result"
+TIME = "time"
+EXCEPTION = "exception"
+TESTSUITES = "testsuites"
+TESTS = "tests"
+
 # File type
 TXT = ".txt"
 JSON = ".json"

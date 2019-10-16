@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 # This intendes to be an action record and replay tool for Mac OS X
+
 import sys
 import os
 import re

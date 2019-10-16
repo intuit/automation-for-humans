@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# This intendes to be an action record and replay tool for Mac OS X
+# This intendes to be an action record and replay tool for macOS
 
 import sys
 import os
@@ -24,10 +24,10 @@ previous_clipboard_value = ""
 CLIPBOARD_INIT_TEXT = "automation-for-humans-init"
 
 CLICK_ACTION_TEMPLATE = "click on {element}\n"
-TYPE_ACTION_TEMPLATE = "type \"{text}\" in {element}\n"
-OPEN_ACTION_TEMPLATE = "open \"{app}\"\n"
+TYPE_ACTION_TEMPLATE = 'type "{text}" in {element}\n'
+OPEN_ACTION_TEMPLATE = 'open "{app}"\n'
 
-# When its a text-field, it will have and AXPath which has the below sub-string
+# When it's a text-field, it will have and AXPath which has the below sub-string
 TEXT_FIELD_AXPATH = "AXTextField"
 
 # The regex that matches the AXPath, when a value is entered in a text field
@@ -64,7 +64,7 @@ def handle_text_fields(axpath) :
         # We break apart the regex matches.
         groups = matches.groups()
 
-        # Now we have to remove the regex that we matched from the original string.
+        # Now we must remove the regex that we matched from the original string.
         axpath = re.sub(TEXT_FIELD_VALUE_REGEX, "", axpath)
         text = groups[2]
     else :
@@ -85,7 +85,7 @@ def handle_non_text_fields(axpath) :
 def recorder(output_file_name) :
     global previous_clipboard_value
 
-    # TODO: Try to get reid of the initial value of the clipboard.
+    # TODO: Try to get rid of the initial value of the clipboard.
     pyperclip.copy(CLIPBOARD_INIT_TEXT)
 
     print("[LOG] Recording Initialised")

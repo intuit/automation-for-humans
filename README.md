@@ -292,8 +292,8 @@ If multiple elements exist on the page that look alike(text-wise) then there is 
 
 ## Experimental Features
 
-### Mac OS X UI Automation
-[automation-for-humans] also works with automating Mac OS X apps. It uses [Appium For Mac] as the underlying driver.
+### macOS UI Automation
+[automation-for-humans] also works with automating macOS apps. It uses [Appium For Mac] as the underlying driver.
 
 Currently it supports interaction by specifying the AXPath's. This is completely against the <a href="#core-philosophy" />core-philosophy</a> that automation should be done in a way the user would interact with the UI rather than hidden details and xpath's. Support for using it without specifying AXPath's is being worked on.
 
@@ -314,11 +314,15 @@ New Keywords added :
     </tr>
 </table>
 
-#### Record and Replay functionality for Mac OS X apps
+#### Record and Replay functionality for macOS apps
 [automation-for-humans] provides a record and replay functionality for users to records the actions and replay them.
 In fact the [sample-inputs/mac-osx-apps/calculator.txt](sample-inputs/mac-osx-apps/calculator.txt) has been generated using the same functionality.
 
 To records, first start [Appium For Mac]. Then in the terminal execute :
+```bash
+./src/action-recorder-mac.py <app-name> <output-file-path>
+```
+or
 ```bash
 python3 src/action-recorder-mac.py <app-name> <output-file-path>
 ```

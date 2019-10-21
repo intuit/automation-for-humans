@@ -73,7 +73,7 @@ def run_program(program, platform, arguments, recording_name, init_command_numbe
 
             print("[LOG] Executing Command : ", command)
             # Before executing every command take a screenshot
-            screenshot_file_name = screenshot_folder + "/" + format(command_number, '05d') + ".png"
+            screenshot_file_name = screenshot_folder + "/" + format(command_number, "05d") + ".png"
             driver.save_screenshot(screenshot_file_name)
 
             # Used to measure performance
@@ -127,7 +127,7 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True) :
 
     if "setup" in executable :
         driver, setup_performance_data = run_executable(executable["setup"], arguments, plat, driver, False)
-        performance_setup = setup_performance_data['details']['setup']
+        performance_setup = setup_performance_data["details"]["setup"]
 
     set_platform(plat)
 
@@ -138,7 +138,7 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True) :
 
     if "tear-down" in executable :
         driver, tear_down_performance_data = run_executable(executable["tear-down"], arguments, plat, driver, False)
-        performance_tear_down = setup_performance_data['details']['tear-down']
+        performance_tear_down = setup_performance_data["details"]["tear-down"]
 
     if top_level and plat == "web" :
         driver.close()
@@ -248,7 +248,7 @@ if __name__ == "__main__" :
     else :
         results = run_serial(runnables, arguments)
 
-    report_generator.generate_test_report(results)    
+    report_generator.generate_test_report(results)
     # If there is a slack channel mentioned in the suite we post the results to slack.
     slackbot.post_results_to_slack(results)
 

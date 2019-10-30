@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "roxiomontes",
+      "name": "Rocio Montes",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/14279937?v=4",
+      "profile": "https://github.com/roxiomontes",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "automation-for-humans",
+  "projectOwner": "roxiomontes",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}

@@ -41,12 +41,23 @@ LOCATION = "location"
 EXECUTION_MODE = "execution-mode"
 RUNNABLES = "runnables"
 
+# Report generation constants
+PASSED = "passed"
+FAILED = "failed"
+SKIPPED = "skipped"
+NAME = "name"
+RESULT = "result"
+TIME = "time"
+EXCEPTION = "exception"
+TESTSUITES = "testsuites"
+TESTS = "tests"
+
 # File type
 TXT = ".txt"
 JSON = ".json"
 LOCK = ".lock"
 
 # Performance Parameters
-# We define the allowed perfromance drop between, this is mostly due to flakyness in UI tests.
+# We define the allowed performance drop between, this is mostly due to flakyness in UI tests.
 # People can redefine this according to their needs.
 PERCENTAGE_PERFORMANCE_DROP_THRESHOLD = 0.1

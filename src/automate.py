@@ -4,6 +4,7 @@ import common
 from constants import *
 import performance
 import sys
+import report_generator
 
 # Platforms
 import web
@@ -58,7 +59,6 @@ def run_program(program, platform, arguments, recording_name, init_command_numbe
 
     command_number = init_command_number # Lol we start our execution from index=1, wasted one hour changing this from 0 to 1
     performance = []
-
     # The 0th command has to be open!
     if program[COMMANDS][0][TYPE] == OPEN_ACTION :
         if driver is None :
@@ -73,7 +73,7 @@ def run_program(program, platform, arguments, recording_name, init_command_numbe
 
             print("[LOG] Executing Command : ", command)
             # Before executing every command take a screenshot
-            screenshot_file_name = screenshot_folder + "/" + format(command_number, '05d') + ".png"
+            screenshot_file_name = screenshot_folder + "/" + format(command_number, "05d") + ".png"
             driver.save_screenshot(screenshot_file_name)
 
             # Used to measure performance
@@ -124,19 +124,21 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True) :
     performance_setup = []
     performance_main = []
     performance_tear_down = []
+
     if "setup" in executable :
-        driver, performance_setup = run_executable(executable["setup"], arguments, plat, driver, False)
+        driver, setup_performance_data = run_executable(executable["setup"], arguments, plat, driver, False)
+        performance_setup = setup_performance_data["details"]["setup"]
 
     set_platform(plat)
 
     input_file, program = parse_executable(executable)
-
     locked_program, driver, performance_main = run_program(program, platform, arguments, executable["name"], 1, driver)
 
     saved_locked_program(input_file, locked_program)
 
     if "tear-down" in executable :
-        driver, performance_tear_down = run_executable(executable["tear-down"], arguments, plat, driver, False)
+        driver, tear_down_performance_data = run_executable(executable["tear-down"], arguments, plat, driver, False)
+        performance_tear_down = setup_performance_data["details"]["tear-down"]
 
     if top_level and plat == "web" :
         driver.close()
@@ -160,7 +162,7 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True) :
         os.mkdir(PERFORMANCE_TEMP_DIR)
     with open(perf_file_name, "w") as perf_file :
         json.dump(performance_data, perf_file, indent=4)
-    return driver, performance_setup + performance_main + performance_tear_down
+    return driver, performance_data
 
 def get_suites() :
     path_to_run_json = RUN_JSON
@@ -212,7 +214,7 @@ def run_parallel(runnables, arguments) :
             p.start()
     for proc, executable, runnable in jobs :
         proc.join()
-        results.append((executables, executable, proc.exitcode))
+        results.append((executables, executable, proc.exitcode, None, None))
     return results
 
 def run_serial(runnables, arguments) :
@@ -222,12 +224,12 @@ def run_serial(runnables, arguments) :
         set_platform(executables[PLATFORM])
         for executable in executables[EXECUTABLES] :
             try :
-                run_executable(executable, arguments, executables[PLATFORM])
-                results.append((executables, executable, 0))
+                driver, perf_data = run_executable(executable, arguments, executables[PLATFORM])
+                results.append((executables, executable, 0, None, perf_data))
             except Exception as e :
                 print("[Error] Got Exception in : ", executable)
                 print("[Exception is] ", e)
-                results.append((executables, executable, 1))
+                results.append((executables, executable, 1, e, None))
     return results
 
 if __name__ == "__main__" :
@@ -243,13 +245,14 @@ if __name__ == "__main__" :
     else :
         results = run_serial(runnables, arguments)
 
+    report_generator.generate_test_report(results)
     # If there is a slack channel mentioned in the suite we post the results to slack.
     slackbot.post_results_to_slack(results)
 
     performance.log_performance()
 
     exit_status = True
-    for runnable, executable, result in results :
+    for runnable, executable, result, exception, perf_data in results :
         if result != 0 :
             print ("[Error] Error in : ", executable[NAME])
             exit_status = False

@@ -1,0 +1,59 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "roxiomontes",
+      "name": "Rocio Montes",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/14279937?v=4",
+      "profile": "https://github.com/roxiomontes",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "MadaraUchiha-314",
+      "name": "Rohith R",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6977429?v=4",
+      "profile": "https://github.com/MadaraUchiha-314",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "alanyee",
+      "name": "Alan Yee",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1873994?v=4",
+      "profile": "https://acsweb.ucsd.edu/~alyee",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "v1shwa",
+      "name": "Vishwa",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5007227?v=4",
+      "profile": "https://github.com/v1shwa",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jdfalko",
+      "name": "jdfalko",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/43558452?v=4",
+      "profile": "https://github.com/jdfalko",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "automation-for-humans",
+  "projectOwner": "roxiomontes",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}

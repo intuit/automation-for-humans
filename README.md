@@ -180,7 +180,7 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
     </table>
 </div>
 
-### CI-Platforms
+### CI-Platforms :
 <table>
     <tr>
         <td>

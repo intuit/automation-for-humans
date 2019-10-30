@@ -195,10 +195,14 @@ def get_arguments() :
     return_dict = {}
     if os.path.isfile(arguments_file_path) :
         with open(arguments_file_path, "r") as args_file :
-            for line in args_file :
-                key, value = line.strip("\n").split("=")
-                return_dict[key] = value
-            return return_dict
+            if arguments_file_path.endswith('.json'):
+                return_dict = json.load(args_file)
+                return return_dict
+            else:
+                for line in args_file :
+                    key, value = line.strip("\n").split("=")
+                    return_dict[key] = value
+                return return_dict
     return return_dict
 
 def run_parallel(runnables, arguments) :

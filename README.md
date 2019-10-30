@@ -4,7 +4,7 @@
 
 ![circle-ci](https://img.shields.io/circleci/project/github/intuit/text-provider/master.svg?style=flat-square&logo=circleci) [![Build Status](https://travis-ci.org/intuit/automation-for-humans.svg?branch=master)](https://travis-ci.org/intuit/automation-for-humans) [![Build status](https://ci.appveyor.com/api/projects/status/yyhxgakhdijtir54/branch/master?svg=true)](https://ci.appveyor.com/project/MadaraUchiha-314/automation-for-humans/branch/master)
  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/87d7131d090e4e6db3a99f823a923e19)](https://www.codacy.com/app/rohithr31/automation-for-humans?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=intuit/automation-for-humans&amp;utm_campaign=Badge_Grade) 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 
 Converts English statements to Selenium Automation.
 
@@ -345,6 +345,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/roxiomontes"><img src="https://avatars3.githubusercontent.com/u/14279937?v=4" width="100px;" alt="Rocio Montes"/><br /><sub><b>Rocio Montes</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=roxiomontes" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/MadaraUchiha-314"><img src="https://avatars3.githubusercontent.com/u/6977429?v=4" width="100px;" alt="Rohith R"/><br /><sub><b>Rohith R</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=MadaraUchiha-314" title="Code">💻</a></td>
+    <td align="center"><a href="https://acsweb.ucsd.edu/~alyee"><img src="https://avatars2.githubusercontent.com/u/1873994?v=4" width="100px;" alt="Alan Yee"/><br /><sub><b>Alan Yee</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=alanyee" title="Code">💻</a></td>
   </tr>
 </table>
 

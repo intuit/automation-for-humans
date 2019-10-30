@@ -4,7 +4,7 @@
 
 ![circle-ci](https://img.shields.io/circleci/project/github/intuit/text-provider/master.svg?style=flat-square&logo=circleci) [![Build Status](https://travis-ci.org/intuit/automation-for-humans.svg?branch=master)](https://travis-ci.org/intuit/automation-for-humans) [![Build status](https://ci.appveyor.com/api/projects/status/yyhxgakhdijtir54/branch/master?svg=true)](https://ci.appveyor.com/project/MadaraUchiha-314/automation-for-humans/branch/master)
  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/87d7131d090e4e6db3a99f823a923e19)](https://www.codacy.com/app/rohithr31/automation-for-humans?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=intuit/automation-for-humans&amp;utm_campaign=Badge_Grade) 
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 
 Converts English statements to Selenium Automation.
 
@@ -347,6 +347,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/MadaraUchiha-314"><img src="https://avatars3.githubusercontent.com/u/6977429?v=4" width="100px;" alt="Rohith R"/><br /><sub><b>Rohith R</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=MadaraUchiha-314" title="Code">💻</a></td>
     <td align="center"><a href="https://acsweb.ucsd.edu/~alyee"><img src="https://avatars2.githubusercontent.com/u/1873994?v=4" width="100px;" alt="Alan Yee"/><br /><sub><b>Alan Yee</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=alanyee" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/v1shwa"><img src="https://avatars2.githubusercontent.com/u/5007227?v=4" width="100px;" alt="Vishwa"/><br /><sub><b>Vishwa</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=v1shwa" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/jdfalko"><img src="https://avatars0.githubusercontent.com/u/43558452?v=4" width="100px;" alt="jdfalko"/><br /><sub><b>jdfalko</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=jdfalko" title="Documentation">📖</a></td>
   </tr>
 </table>
 

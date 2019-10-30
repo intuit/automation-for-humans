@@ -22,6 +22,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "alanyee",
+      "name": "Alan Yee",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1873994?v=4",
+      "profile": "https://acsweb.ucsd.edu/~alyee",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

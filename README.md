@@ -181,7 +181,7 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
     </table>
 </div>
 
-### CI-Platforms
+### CI-Platforms :
 <table>
     <tr>
         <td>
@@ -343,11 +343,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/roxiomontes"><img src="https://avatars3.githubusercontent.com/u/14279937?v=4" width="100px;" alt="Rocio Montes"/><br /><sub><b>Rocio Montes</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=roxiomontes" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/MadaraUchiha-314"><img src="https://avatars3.githubusercontent.com/u/6977429?v=4" width="100px;" alt="Rohith R"/><br /><sub><b>Rohith R</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=MadaraUchiha-314" title="Code">💻</a></td>
     <td align="center"><a href="https://acsweb.ucsd.edu/~alyee"><img src="https://avatars2.githubusercontent.com/u/1873994?v=4" width="100px;" alt="Alan Yee"/><br /><sub><b>Alan Yee</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=alanyee" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/v1shwa"><img src="https://avatars2.githubusercontent.com/u/5007227?v=4" width="100px;" alt="Vishwa"/><br /><sub><b>Vishwa</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=v1shwa" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jdfalko"><img src="https://avatars0.githubusercontent.com/u/43558452?v=4" width="100px;" alt="jdfalko"/><br /><sub><b>jdfalko</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=jdfalko" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/roxiomontes"><img src="https://avatars3.githubusercontent.com/u/14279937?v=4" width="100px;" alt="Rocio Montes"/><br /><sub><b>Rocio Montes</b></sub></a><br /><a href="https://github.com/roxiomontes/automation-for-humans/commits?author=roxiomontes" title="Documentation">📖</a></td>
   </tr>
 </table>
 

@@ -329,11 +329,15 @@ Press `Ctrl + C` to terminate the script from recording.
 This will produce a file with all the commands that you have executed in a way that [automation-for-humans] understands. For readability,
 the script also adds in a comment before each line (starting with `#`) which attempts to be the English version of the same command.
 
+#### Atom Syntax Highlights Package
+[automation-for-humans] supports syntax highlighting for the Atom editor, which can be found at [atom-syntax-highlight]. Clone the folder into Atom's packages folder (~/.atom/packages for MacOS), and reload Atom to use it.
+
 [automation-for-humans]: https://github.com/intuit/automation-for-humans
 [XPath]: https://en.wikipedia.org/wiki/XPath
 [CircleCI]: https://circleci.com/
 [Appium For Mac]: https://github.com/appium/appium-for-mac
 [DSL]: https://github.com/automation-for-humans/dsl
+[atom-syntax-highlight]: https://github.com/automation-for-humans/atom-syntax-highlight
 
 ## Contributors ✨
 

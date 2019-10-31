@@ -191,10 +191,13 @@ def recording_init(suite_name) :
     return suite_path
 
 def get_arguments() :
-    arguments_file_path = ARGUMENTS_FILE
     return_dict = {}
-    if os.path.isfile(arguments_file_path) :
-        with open(arguments_file_path, "r") as args_file :
+    if os.path.isfile('arguments.json') :
+        with open('arguments.json', "r") as args_file :
+            return_dict = json.load(args_file)
+            return return_dict
+    elif os.path.isfile('arguments.txt') :
+        with open('arguments.txt', "r") as args_file :
             for line in args_file :
                 key, value = line.strip("\n").split("=")
                 return_dict[key] = value

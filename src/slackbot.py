@@ -3,7 +3,7 @@ import requests
 
 def post_results_to_slack(results) :
     runnable_details = {}
-    for runnable, executable, result in results :
+    for runnable, executable, result, exception, perf_data in results :
         if "slack" in runnable :
             color = "good" if result == 0 else "danger"
             title = "Passed" if result == 0 else "Failed"

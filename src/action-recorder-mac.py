@@ -43,12 +43,12 @@ COMMENT_PREFIX = "# "
 def find_english_equivalent(axpath) :
     try :
         title_matches = re.findall(AX_TITLE_REGEX, axpath)
-        if title_matches != None :
+        if title_matches is not None :
             return title_matches[-1][1]
-        else :
-            return "\"\""
     except Exception :
-        return "\"\""
+        return '""'
+    
+    return '""'
 
 # Handles text-field related actions
 def handle_text_fields(axpath) :
@@ -57,7 +57,7 @@ def handle_text_fields(axpath) :
     text = ""
 
     # If there are matches, then we have typed something, else we assume that we haven't
-    if matches != None :
+    if matches is not None :
         print("[LOG] Found AXVAlue in AXTextField")
         # We break apart the regex matches.
         groups = matches.groups()

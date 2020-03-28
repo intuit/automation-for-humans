@@ -24,4 +24,4 @@ before_test:
 
 # to run your custom scripts instead of automatic tests
 test_script:
-  - win_runtests.cmd
+  - src/scripts/windows-automate-wrapper.cmd

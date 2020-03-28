@@ -17,7 +17,7 @@ jobs:
           command: "python3 src/prbot.py"
       - run:
           name: "Create Animations"
-          command: "chmod +x src/create-animation.sh && ./src/create-animation.sh"
+          command: "chmod +x src/scripts/create-animation.sh && ./src/scripts/create-animation.sh"
           when: always
       - store_artifacts:
           path: ./recordings

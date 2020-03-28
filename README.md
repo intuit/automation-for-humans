@@ -158,17 +158,17 @@ Integrating with [automation-for-humans] is extremely simple and involves just o
         </tr>
         <tr>
             <td>
-                <a href="./src/install-dependencies/install-dependencies-win.bat">
+                <a href="./src/scripts/install-dependencies/install-dependencies-win.bat">
                     install-dependencies-win.bat
                 </a>
             </td>
             <td>
-                <a href="./src/install-dependencies/install-dependencies-linux.sh">
+                <a href="./src/scripts/install-dependencies/install-dependencies-linux.sh">
                     install-dependencies-linux.sh
                 </a>
             </td>
             <td>
-                <a href="./src/install-dependencies/install-dependencies-mac.sh">
+                <a href="./src/scripts/install-dependencies/install-dependencies-mac.sh">
                     install-dependencies-mac.sh
                 </a>
             </td>

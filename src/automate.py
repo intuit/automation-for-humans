@@ -4,7 +4,6 @@ import common
 from constants import *
 import performance
 import sys
-import report_generator
 
 # Platforms
 import web
@@ -278,7 +277,6 @@ if __name__ == "__main__":
     else:
         results = run_serial(runnables, arguments)
 
-    report_generator.generate_test_report(results)
     # If there is a slack channel mentioned in the suite we post the results to slack.
     slackbot.post_results_to_slack(results)
 

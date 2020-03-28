@@ -1,7 +1,7 @@
 #!/bin/sh
 sudo apt-get update
 sudo apt-get install python3-pip python3-dev build-essential imagemagick apt-transport-https
-sudo pip3 install selenium pysocks requests urllib3 --upgrade
+sudo pip3 install selenium pysocks requests urllib3 pre-commit --upgrade
 
 # Add the repositories for google-chrome-stable
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -

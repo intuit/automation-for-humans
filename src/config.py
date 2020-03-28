@@ -12,5 +12,5 @@ config = {
     # The obvious window sizes.
     "window-width": 1920,
     # The obvious window sizes.
-    "window-height": 1080
+    "window-height": 1080,
 }

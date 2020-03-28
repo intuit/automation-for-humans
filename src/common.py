@@ -8,42 +8,52 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
 # All the common utilities that will be used by web, desktop and mobile platforms.
-def find_element(driver, timeout_seconds, mode, xpath) :
-    if mode == "NAME" :
-        return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.NAME, xpath)))
-    elif mode == "ID" :
-        return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.ID, xpath)))
-    elif mode == "CLASS_NAME" :
-        return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.CLASS_NAME, xpath)))
-    else :
-        return WebDriverWait(driver, timeout_seconds).until(EC.visibility_of_element_located((By.XPATH, xpath)))
+def find_element(driver, timeout_seconds, mode, xpath):
+    if mode == "NAME":
+        return WebDriverWait(driver, timeout_seconds).until(
+            EC.visibility_of_element_located((By.NAME, xpath))
+        )
+    elif mode == "ID":
+        return WebDriverWait(driver, timeout_seconds).until(
+            EC.visibility_of_element_located((By.ID, xpath))
+        )
+    elif mode == "CLASS_NAME":
+        return WebDriverWait(driver, timeout_seconds).until(
+            EC.visibility_of_element_located((By.CLASS_NAME, xpath))
+        )
+    else:
+        return WebDriverWait(driver, timeout_seconds).until(
+            EC.visibility_of_element_located((By.XPATH, xpath))
+        )
 
-def execute_action(driver, command, element) :
-    if command[TYPE] == CLICK_ACTION :
+
+def execute_action(driver, command, element):
+    if command[TYPE] == CLICK_ACTION:
         ActionChains(driver).move_to_element(element).click().perform()
-    elif command[TYPE] == CLICK_IF_PRESENT_ACTION :
-        try :
+    elif command[TYPE] == CLICK_IF_PRESENT_ACTION:
+        try:
             ActionChains(driver).move_to_element(element).click().perform()
-        except Exception :
+        except Exception:
             print("[LOG][Not Found Element] click if present : ", element)
-    elif command[TYPE] == HOVER_ACTION :
+    elif command[TYPE] == HOVER_ACTION:
         ActionChains(driver).move_to_element(element).perform()
-    elif command[TYPE] == TYPE_ACTION :
+    elif command[TYPE] == TYPE_ACTION:
         element.send_keys(command[ARGS][INPUT])
-    elif command[TYPE] == WAIT_UNTIL_ACTION :
+    elif command[TYPE] == WAIT_UNTIL_ACTION:
         pass
-    elif command[TYPE] == ASSERT_ACTION :
+    elif command[TYPE] == ASSERT_ACTION:
         ActionChains(driver).move_to_element(element).perform()
-    else :
+    else:
         raise Exception("[Error] Command Type Not Found : ", command[TYPE])
 
-def execute_non_element_action(driver, command) :
+
+def execute_non_element_action(driver, command):
     # Here are all the commands that don't require finding an element.
-    if command[TYPE] == WAIT_ACTION :
+    if command[TYPE] == WAIT_ACTION:
         time.sleep(int(command[ARGS][SUBJECT]))
         return True
-    elif command[TYPE] == EXECJS_ACTION :
+    elif command[TYPE] == EXECJS_ACTION:
         driver.execute_script(command[ARGS][SUBJECT])
         return True
-    else :
+    else:
         return False

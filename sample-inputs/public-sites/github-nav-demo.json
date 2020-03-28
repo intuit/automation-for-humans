@@ -89,14 +89,6 @@
                 "subject": "/intuit/karate/milestones"
             },
             "type": "assert"
-        },
-        {
-            "args": {
-                "attribute": "href",
-                "index": "",
-                "subject": "/intuit/karate"
-            },
-            "type": "assert"
         }
     ]
 }

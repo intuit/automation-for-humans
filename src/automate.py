@@ -4,6 +4,7 @@ import common
 from constants import *
 import performance
 import sys
+import report_generator
 
 # Platforms
 import web
@@ -66,10 +67,9 @@ def run_program(
         init_command_number
     )  # Lol we start our execution from index=1, wasted one hour changing this from 0 to 1
     performance = []
-
     # The 0th command has to be open!
     if program[COMMANDS][0][TYPE] == OPEN_ACTION:
-        if driver == None:
+        if driver is None:
             driver = platform.init_driver(program, arguments)
             platform.init_app(driver, program, arguments)
 
@@ -116,7 +116,7 @@ def parse_executable(executable):
     # output_file : File with JSON format.
 
     # Yo! New Parser on the block.
-    parse_exit_code = subprocess.call(parse_command + [input_file, output_file])
+    parse_exit_code = subprocess.call([parse_command, input_file, output_file])
     if parse_exit_code != 0:
         raise Exception("[Error] Parse Error")
 
@@ -136,15 +136,16 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True):
     performance_setup = []
     performance_main = []
     performance_tear_down = []
+
     if "setup" in executable:
-        driver, performance_setup = run_executable(
+        driver, setup_performance_data = run_executable(
             executable["setup"], arguments, plat, driver, False
         )
+        performance_setup = setup_performance_data["details"]["setup"]
 
     set_platform(plat)
 
     input_file, program = parse_executable(executable)
-
     locked_program, driver, performance_main = run_program(
         program, platform, arguments, executable["name"], 1, driver
     )
@@ -152,9 +153,10 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True):
     saved_locked_program(input_file, locked_program)
 
     if "tear-down" in executable:
-        driver, performance_tear_down = run_executable(
+        driver, tear_down_performance_data = run_executable(
             executable["tear-down"], arguments, plat, driver, False
         )
+        performance_tear_down = setup_performance_data["details"]["tear-down"]
 
     if top_level and plat == "web":
         driver.close()
@@ -178,7 +180,7 @@ def run_executable(executable, arguments, plat, driver=None, top_level=True):
         os.mkdir(PERFORMANCE_TEMP_DIR)
     with open(perf_file_name, "w") as perf_file:
         json.dump(performance_data, perf_file, indent=4)
-    return driver, performance_setup + performance_main + performance_tear_down
+    return driver, performance_data
 
 
 def get_suites():
@@ -194,8 +196,7 @@ def get_executables(runnable):
             executables = json.load(runnable_file)
             return executables
     except Exception:  # parent of IOError, OSError *and* WindowsError where available
-        print("[Error] Got exception while reading file : ", runnable)
-        sys.exit(1)
+        sys.exit("[Error] Got exception while reading file : " + runnable)
 
 
 def recording_init(suite_name):
@@ -212,10 +213,13 @@ def recording_init(suite_name):
 
 
 def get_arguments():
-    arguments_file_path = ARGUMENTS_FILE
     return_dict = {}
-    if os.path.isfile(arguments_file_path):
-        with open(arguments_file_path, "r") as args_file:
+    if os.path.isfile("arguments.json"):
+        with open("arguments.json", "r") as args_file:
+            return_dict = json.load(args_file)
+            return return_dict
+    elif os.path.isfile("arguments.txt"):
+        with open("arguments.txt", "r") as args_file:
             for line in args_file:
                 key, value = line.strip("\n").split("=")
                 return_dict[key] = value
@@ -239,7 +243,7 @@ def run_parallel(runnables, arguments):
             p.start()
     for proc, executable, runnable in jobs:
         proc.join()
-        results.append((executables, executable, proc.exitcode))
+        results.append((executables, executable, proc.exitcode, None, None))
     return results
 
 
@@ -250,12 +254,14 @@ def run_serial(runnables, arguments):
         set_platform(executables[PLATFORM])
         for executable in executables[EXECUTABLES]:
             try:
-                run_executable(executable, arguments, executables[PLATFORM])
-                results.append((executables, executable, 0))
+                driver, perf_data = run_executable(
+                    executable, arguments, executables[PLATFORM]
+                )
+                results.append((executables, executable, 0, None, perf_data))
             except Exception as e:
                 print("[Error] Got Exception in : ", executable)
                 print("[Exception is] ", e)
-                results.append((executables, executable, 1))
+                results.append((executables, executable, 1, e, None))
     return results
 
 
@@ -267,26 +273,24 @@ if __name__ == "__main__":
     # Get the arguments from the file.
     arguments = get_arguments()
 
-    results = []
-
     if suites[EXECUTION_MODE] == "parallel":
         results = run_parallel(runnables, arguments)
     else:
         results = run_serial(runnables, arguments)
 
+    report_generator.generate_test_report(results)
     # If there is a slack channel mentioned in the suite we post the results to slack.
     slackbot.post_results_to_slack(results)
 
     performance.log_performance()
 
     exit_status = True
-    for runnable, executable, result in results:
+    for runnable, executable, result, exception, perf_data in results:
         if result != 0:
             print("[Error] Error in : ", executable[NAME])
             exit_status = False
     if not exit_status:
-        print("[Error] Exiting!")
-        exit(1)
-    else:
-        print("[LOG] Success!")
-        exit(0)
+        sys.exit("[Error] Exiting!")
+
+    print("[LOG] Success!")
+    sys.exit(0)

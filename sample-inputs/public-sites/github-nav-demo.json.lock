@@ -99,15 +99,6 @@
             },
             "type": "assert",
             "mode": "ATTRIBUTE"
-        },
-        {
-            "args": {
-                "attribute": "href",
-                "index": "",
-                "subject": "/intuit/karate"
-            },
-            "type": "assert",
-            "mode": "ATTRIBUTE"
         }
     ]
 }

@@ -7,7 +7,7 @@ from constants import *
 
 # This function is generic but only works with CircleCI :p
 # TODO: Make this generic so that it works with all the 3 CI enviornments.
-def comment_on_pr(body, api_end_point = "https://api.github.com") :
+def comment_on_pr(body, api_end_point="https://api.github.com"):
     AUTH_HEADER = {}
     AUTH_HEADER["Authorization"] = "token " + os.environ["GITHUB_PERSONAL_TOKEN"]
 
@@ -15,13 +15,23 @@ def comment_on_pr(body, api_end_point = "https://api.github.com") :
     REPO_NAME = REPO_NAME = (os.environ["CIRCLE_PROJECT_REPONAME"]).lower()
 
     # This means that its not a PR. So we exit gracefully.
-    try :
+    try:
         PR_NUMBER = os.environ["CIRCLE_PULL_REQUEST"].split("/")[6]
-    except :
+    except:
         print("[LOG] Skipping. Not a Pull Request")
         return
 
-    github_url = api_end_point + "/repos" + "/" + ORG_NAME + "/" + REPO_NAME + "/issues/" + PR_NUMBER + "/comments"
+    github_url = (
+        api_end_point
+        + "/repos"
+        + "/"
+        + ORG_NAME
+        + "/"
+        + REPO_NAME
+        + "/issues/"
+        + PR_NUMBER
+        + "/comments"
+    )
     content = {}
     content["body"] = body
 
@@ -30,16 +40,17 @@ def comment_on_pr(body, api_end_point = "https://api.github.com") :
     r = requests.post(github_url, data=json.dumps(content), headers=AUTH_HEADER)
     print(r)
 
-if __name__ == "__main__" :
-    if os.path.isfile(PERFORMANCE_REPORT) :
+
+if __name__ == "__main__":
+    if os.path.isfile(PERFORMANCE_REPORT):
         # Open's the performance file and comment on the PR
-        with open(PERFORMANCE_REPORT, "r") as perf_report_file :
+        with open(PERFORMANCE_REPORT, "r") as perf_report_file:
             body = perf_report_file.read()
 
             # The first argument can be used to override
-            if len(sys.argv) > 1 :
+            if len(sys.argv) > 1:
                 comment_on_pr(body, sys.argv[1])
-            else :
+            else:
                 comment_on_pr(body)
-    else :
+    else:
         print("[LOG] Could not find performance file. Exiting.")

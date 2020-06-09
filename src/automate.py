@@ -42,7 +42,13 @@ def execute_command(driver, command):
     # We need to add sleep here because, some UI elements take time to refresh.
     time.sleep(1)
 
-    element, mode, _ = platform.find_element(driver, command)
+    try:
+        element, mode, _ = platform.find_element(driver, command)
+    except Exception:
+        if command[TYPE] != CLICK_IF_PRESENT_ACTION:
+            raise Exception("Element Not Found!")
+        else:
+            return ""
 
     common.execute_action(driver, command, element)
 

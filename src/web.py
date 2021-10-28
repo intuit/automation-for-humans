@@ -30,6 +30,11 @@ def generate_xpath_placeholder(command):
     command[ARGS][ATTRIBUTE] = "placeholder"
     return generate_xpath_for_generic_attribute(command)
 
+# Specialised function to find element by title. Eg. <input title="text" />
+def generate_xpath_title(command):
+    command[ARGS][ATTRIBUTE] = "title"
+    return generate_xpath_for_generic_attribute(command)
+
 
 # Specialised function to find element by name Eg. <input name="text" />
 def generate_xpath_name(command):
@@ -44,7 +49,7 @@ def generate_xpath_value(command):
 
 # These are the different mode in which we find an element on the screen.
 # The order given here is the same order in which we search.
-execute_modes = ["NAME", "PLACEHOLDER", "XPATH", "VALUE", "ATTRIBUTE"]
+execute_modes = ["TITLE", "NAME", "PLACEHOLDER", "XPATH", "VALUE", "ATTRIBUTE"]
 
 
 def find_element(driver, command):
@@ -86,6 +91,10 @@ def find_element(driver, command):
                 break
             elif mode == "ATTRIBUTE":
                 xpath = generate_xpath_for_generic_attribute(command)
+                element = common.find_element(driver, timeout_seconds, mode, xpath)
+                break
+            elif mode == "TITLE":
+                xpath = generate_xpath_title(command)
                 element = common.find_element(driver, timeout_seconds, mode, xpath)
                 break
             else:

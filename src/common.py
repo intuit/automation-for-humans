@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from keys import *
 
 # All the common utilities that will be used by web, desktop and mobile platforms.
 def find_element(driver, timeout_seconds, mode, xpath):
@@ -43,6 +44,12 @@ def execute_action(driver, command, element):
         pass
     elif command[TYPE] == ASSERT_ACTION:
         ActionChains(driver).move_to_element(element).perform()
+    elif command[TYPE] == 'shortcut':
+        key_list = command[ARGS][COMMAND].split('+')
+        if(len(key_list) == 2):
+            element.send_keys(seleniumKeyMap.get(key_list[0],key_list[0]), seleniumKeyMap.get(key_list[1],key_list[1]))
+        elif(len(key_list) == 3):
+            element.send_keys(seleniumKeyMap.get(key_list[0],key_list[0]), seleniumKeyMap.get(key_list[1],key_list[1]), seleniumKeyMap.get(key_list[1],key_list[1]))
     else:
         raise Exception("[Error] Command Type Not Found : ", command[TYPE])
 

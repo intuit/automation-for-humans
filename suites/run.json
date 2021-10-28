@@ -1,6 +1,6 @@
 {
     "execution-mode": "parallel",
     "runnables": [
-        "suites/public-sites.json"
+        "suites/shortcut-demo.json"
     ]
 }

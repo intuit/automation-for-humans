@@ -1,0 +1,79 @@
+{
+    "commands": [
+        {
+            "args": {
+                "subject": "https://www.google.com"
+            },
+            "type": "open"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "click"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "index": "",
+                "input": "random",
+                "subject": "Search"
+            },
+            "type": "type"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "click"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "command": "command+a",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "shortcut"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "command": "command+c",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "shortcut"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "command": "command+v",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "shortcut"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "command": "command+v",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "shortcut"
+        },
+        {
+            "args": {
+                "attribute": "",
+                "index": "",
+                "subject": "Google Search"
+            },
+            "type": "click"
+        }
+    ]
+}

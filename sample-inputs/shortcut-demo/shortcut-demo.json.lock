@@ -1,0 +1,87 @@
+{
+    "commands": [
+        {
+            "args": {
+                "subject": "https://www.google.com"
+            },
+            "type": "open"
+        },
+        {
+            "args": {
+                "attribute": "title",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "click",
+            "mode": "TITLE"
+        },
+        {
+            "args": {
+                "attribute": "title",
+                "index": "",
+                "input": "random",
+                "subject": "Search"
+            },
+            "type": "type",
+            "mode": "TITLE"
+        },
+        {
+            "args": {
+                "attribute": "title",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "click",
+            "mode": "TITLE"
+        },
+        {
+            "args": {
+                "attribute": "title",
+                "command": "command+a",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "shortcut",
+            "mode": "TITLE"
+        },
+        {
+            "args": {
+                "attribute": "title",
+                "command": "command+c",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "shortcut",
+            "mode": "TITLE"
+        },
+        {
+            "args": {
+                "attribute": "title",
+                "command": "command+v",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "shortcut",
+            "mode": "TITLE"
+        },
+        {
+            "args": {
+                "attribute": "title",
+                "command": "command+v",
+                "index": "",
+                "subject": "Search"
+            },
+            "type": "shortcut",
+            "mode": "TITLE"
+        },
+        {
+            "args": {
+                "attribute": "value",
+                "index": "",
+                "subject": "Google Search"
+            },
+            "type": "click",
+            "mode": "VALUE"
+        }
+    ]
+}

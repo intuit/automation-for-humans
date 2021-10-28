@@ -1,0 +1,11 @@
+{
+    "name": "shortcut-demo",
+    "platform": "web",
+    "executables": [
+        {
+            "name": "shortcut_demo",
+            "type": "file",
+            "location": "sample-inputs/shortcut-demo/shortcut-demo.txt"
+        }
+    ]
+}
